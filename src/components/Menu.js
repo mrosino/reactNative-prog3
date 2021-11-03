@@ -5,7 +5,7 @@ import Home from '../screens/Home';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
 import Profile from '../screens/Profile';
-import Post from '../screens/Post';
+import Upload from '../screens/Upload';
 import { auth } from '../firebase/config';
 const Drawer = createDrawerNavigator();
 class Menu extends Component {
@@ -70,7 +70,7 @@ class Menu extends Component {
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home />}/>
-                    <Drawer.Screen name="Nuevo Post" component={ (drawerProps)=> <Post drawerProps={drawerProps}/>}/>
+                    <Drawer.Screen name="Nuevo Post" component={ (drawerProps)=> <Upload drawerProps={drawerProps}/>}/>
                     <Drawer.Screen name="Mi Perfil" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
                 </Drawer.Navigator>
                 }
