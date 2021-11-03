@@ -11,7 +11,7 @@ class Home extends Component {
     };
   }
   componentDidMount() {
-    //Traer datos de la db
+ 
     db.collection("Posts")
       .orderBy("createdAt", "desc")
       .onSnapshot((docs) => {

@@ -9,10 +9,7 @@ class Login extends Component{
             error:'',
         }
     }
-    onSubmit(){
-        console.log(`El email ingresado es: ${this.state.email}`);
-        console.log(`La contraseña ingresada es: ${this.state.password}`);
-    }
+
     render(){
         console.log(this.props.login);
         return(

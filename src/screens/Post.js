@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from "../firebase/config";
-class Upload extends Component{
+class Post extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -10,18 +10,18 @@ class Upload extends Component{
     }
 
     onSubmit(){
-        console.log('Posteando...');
+     
         db.collection('Posts').add({
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
         })
         .then(()=>{
-            console.log('posteado ok.')
+         
             this.setState({
                 textoPost: ''
             })
-          
+            
             this.props.drawerProps.navigation.navigate('Home');
         })
         .catch( e => console.log(e))
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default Upload;
+export default Post;
