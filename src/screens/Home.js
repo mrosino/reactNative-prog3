@@ -1,16 +1,8 @@
 import React, { Component } from "react";
-
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  Image,
-  ActivityIndicator,
-  FlatList,
-  TextInput,
-} from "react-native";
+import { Text,TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput,} from "react-native";
 import { db, auth } from "../firebase/config";
+import Card from "../components/Card"
+
 class Home extends Component {
   constructor() {
     super();
@@ -43,8 +35,8 @@ class Home extends Component {
 
         <FlatList
           data={this.state.posts}
-          keyExtractor={(post) => post.id}
-          renderItem={({ item }) => <Text>{item.data.textoPost}</Text>}
+          keyExtractor={(card) => card.id}
+          renderItem={({ item }) => <Card postData={item}/>}
         />
       </View>
     );
