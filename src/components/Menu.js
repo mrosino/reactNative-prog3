@@ -51,7 +51,7 @@ class Menu extends Component {
             })
     }
     logout(){
-        auth.signoOut()
+        auth.signOut()
         .then( 
             this.setState({
                 loggedin: false,
@@ -59,6 +59,7 @@ class Menu extends Component {
         )
         .catch(e => console.log(e))
     }
+
     render(){
         return(
             <NavigationContainer>
@@ -69,7 +70,7 @@ class Menu extends Component {
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home />}/>
-                    <Drawer.Screen name="Nuevo Post" component={ (drawerProps)=> <Post drawerProps={drawerProps}/>}/>
+                    <Drawer.Screen name="Nuevo Post" component={ (drawerProps)=> <PostForm drawerProps={drawerProps}/>}/>
                     <Drawer.Screen name="Mi Perfil" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
                 </Drawer.Navigator>
                 }
@@ -77,4 +78,5 @@ class Menu extends Component {
         )
     }
 }
+
 export default Menu;

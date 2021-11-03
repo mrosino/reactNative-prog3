@@ -18,6 +18,9 @@ class Profile extends Component {
     return (
       <View>
         <Text style={styles.title}> Mi perfil </Text>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
+          <Text style={styles.textButton}>Cerrar </Text>
+        </TouchableOpacity>
       </View>
     );
   }
