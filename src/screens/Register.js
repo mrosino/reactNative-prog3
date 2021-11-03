@@ -9,11 +9,7 @@ class Register extends Component{
             password:'',
         }
     }
-    onSubmit(){
-        console.log(`El email ingresado es: ${this.state.email}`);
-        console.log(`El usuario ingresado es: ${this.state.userName}`);
-        console.log(`La contraseña ingresada es: ${this.state.password}`);
-    }
+ 
     render(){
         return(
             <View style={styles.formContainer}>
@@ -35,7 +31,7 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.userName)}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
             </View>

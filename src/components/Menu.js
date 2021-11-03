@@ -13,7 +13,8 @@ class Menu extends Component {
         super(props);
         this.state = {
             loggedin: false,
-            userData: {}
+            userData: {},
+            nickName:""
         }
     }
     componentDidMount(){
@@ -31,7 +32,18 @@ class Menu extends Component {
     register(email, pass){
         auth.createUserWithEmailAndPassword(email, pass)
             .then(()=>{
-                console.log('Registrado ok');
+                db.collection('User').add({
+                    owner: auth.currentUser.email,
+                    createdAt: Date.now(),
+                    nickName: this.state.nickName,
+                })
+                .then(()=>{
+                    // this.setState({
+                    //     nickName: ''
+                    // })
+                })
+                .catch( e => console.log(e))
+                
             })
             .catch( error => {
                 console.log(error);
