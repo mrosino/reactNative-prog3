@@ -22,7 +22,7 @@ class Profile extends Component {
       name:auth.currentUser.userName,
       email: auth.currentUser.email,
       fecha:"",
-      posts:"",
+      userPosts:"",
 
     };
     
@@ -40,7 +40,7 @@ class Profile extends Component {
         });
         console.log(info);
         this.setState({
-          user: info,
+          userPosts: info,
         });
       });
       
@@ -49,13 +49,13 @@ class Profile extends Component {
     return (
       <View>
         <Text style={styles.title}> Mi perfil </Text>
-        <Text> Nombre de usuario</Text>
-        <Text> Email</Text>
-        <Text> Ultimo inicio de sesion</Text>
-        <Text> Cantidad total de posteos</Text>
-        <Text> Mis posteos</Text>
+        <Text> Nombre de usuario:</Text>
+        <Text> Email:{this.state.email} </Text>
+        <Text> Ultimo inicio de sesion:</Text>
+        <Text> Cantidad total de posteos:{this.state.userPosts.length}</Text>
+        <Text> Mis posteos:</Text>
         <FlatList
-          data={this.state.posts}
+          data={this.state.userPosts}
           keyExtractor={(card) => card.id}
           renderItem={({ item }) => <Card postData={item}/>}
         />
