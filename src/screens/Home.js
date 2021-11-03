@@ -27,12 +27,12 @@ class Home extends Component {
           posts: posteos,
         });
       });
-      console.log(auth.currentUser.userName + "hola");
+   
   }
   render() {
     return (
       <View>
-        <Text style={styles.title}> Hola Mundo </Text>
+        <Text style={styles.title}> Bienvenidos </Text>
 
         <FlatList
           data={this.state.posts}

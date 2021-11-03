@@ -13,12 +13,13 @@
 import React, { Component } from "react";
 import {Text,TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput,} from "react-native";
 import { auth, db } from "../firebase/config";
+import Card from "../components/Card";
 
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      name:auth.currentUser,
+      name:auth.currentUser.userName,
       email: auth.currentUser.email,
       fecha:"",
       posts:"",
@@ -28,7 +29,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     //Traer datos de la db
-    db.collection("Posts").where("owner","==",auth.currentUser.email).orderBy("createdAt", "desc")
+    db.collection("Posts").where("owner","==",auth.currentUser.email).orderBy("createdAt", "desc").limit(10)
       .onSnapshot((docs) => {
         let info = [];
         docs.forEach((doc) => {
@@ -48,7 +49,16 @@ class Profile extends Component {
     return (
       <View>
         <Text style={styles.title}> Mi perfil </Text>
-        {/* <Text> {this.state.user} </Text> */}
+        <Text> Nombre de usuario</Text>
+        <Text> Email</Text>
+        <Text> Ultimo inicio de sesion</Text>
+        <Text> Cantidad total de posteos</Text>
+        <Text> Mis posteos</Text>
+        <FlatList
+          data={this.state.posts}
+          keyExtractor={(card) => card.id}
+          renderItem={({ item }) => <Card postData={item}/>}
+        />
         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
           <Text style={styles.textButton}>Cerrar sesion </Text>
         </TouchableOpacity>
