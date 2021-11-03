@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createDrawerNavigator } from '@react-navigation/drawer'
-import Home from '../screens/home';
-import Login from '../screens/login';
-import Register from '../screens/register';
-import Profile from '../screens/miPerfil';
-import PostForm from '../screens/postForm';
+import Home from '../screens/Home';
+import Login from '../screens/Login';
+import Register from '../screens/Register';
+import Profile from '../screens/Profile';
+import Post from '../screens/Post';
 import { auth } from '../firebase/config';
 const Drawer = createDrawerNavigator();
 class Menu extends Component {

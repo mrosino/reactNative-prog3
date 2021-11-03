@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Contador from "../components/Contador";
+
 import {
   Text,
   TouchableOpacity,
