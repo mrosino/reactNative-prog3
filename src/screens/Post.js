@@ -8,6 +8,7 @@ class Post extends Component{
             textoPost:'',
         }
     }
+
     onSubmit(){
         console.log('Posteando...');
         db.collection('Posts').add({
@@ -25,6 +26,8 @@ class Post extends Component{
         })
         .catch( e => console.log(e))
     }
+
+
     render(){
         console.log(this.props.login);
         return(
@@ -45,6 +48,7 @@ class Post extends Component{
         )
     }
 }
+
 const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
@@ -73,5 +77,6 @@ const styles = StyleSheet.create({
     textButton:{
         color: '#fff'
     }
+
 })
 export default Post;

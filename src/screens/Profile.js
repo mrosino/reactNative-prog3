@@ -19,7 +19,7 @@ class Profile extends Component {
       <View>
         <Text style={styles.title}> Mi perfil </Text>
         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
-          <Text style={styles.textButton}>Cerrar </Text>
+          <Text style={styles.textButton}>Cerrar sesion </Text>
         </TouchableOpacity>
       </View>
     );
@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
   },
   imagen: {
     height: 250,
+  },
+  textButton:{
+    fontSize:30,
+    textAlign: "center",
+  
   },
 });
 export default Profile;
