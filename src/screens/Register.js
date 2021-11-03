@@ -35,7 +35,7 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.userName)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
             </View>

@@ -12,34 +12,43 @@
 
 import React, { Component } from "react";
 import {Text,TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput,} from "react-native";
+import { auth, db } from "../firebase/config";
+
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      user: ""
+      name:auth.currentUser,
+      email: auth.currentUser.email,
+      fecha:"",
+      posts:"",
+
     };
+    
   }
   componentDidMount() {
     //Traer datos de la db
-    db.collection("Posts").where("owner","==","mvrosino@hotmail.com").orderBy("createdAt", "desc")
+    db.collection("Posts").where("owner","==",auth.currentUser.email).orderBy("createdAt", "desc")
       .onSnapshot((docs) => {
-        let posteos = [];
+        let info = [];
         docs.forEach((doc) => {
-          posteos.push({
+          info.push({
             id: doc.id,
             data: doc.data(),
           });
         });
-        console.log(posteos);
+        console.log(info);
         this.setState({
-          posts: posteos,
+          user: info,
         });
       });
+      
   }
   render() {
     return (
       <View>
         <Text style={styles.title}> Mi perfil </Text>
+        {/* <Text> {this.state.user} </Text> */}
         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
           <Text style={styles.textButton}>Cerrar sesion </Text>
         </TouchableOpacity>

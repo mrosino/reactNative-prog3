@@ -27,6 +27,7 @@ class Home extends Component {
           posts: posteos,
         });
       });
+      console.log(auth.currentUser.userName + "hola");
   }
   render() {
     return (
