@@ -1,12 +1,25 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from "../firebase/config";
+import MyCamera from "../components/MyCamera";
+
+
 class Upload extends Component{
     constructor(props){
         super(props)
         this.state={
             textoPost:'',
+            showCamera: true,
+            url: ''
         }
+    }
+
+    uploadPhoto(url){
+        this.setState({
+            showCamera: false,
+            url: url
+
+        })
     }
 
     onSubmit(){
@@ -15,6 +28,7 @@ class Upload extends Component{
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
+            image: this.state.url
         })
         .then(()=>{
             console.log('posteado ok.')
@@ -32,6 +46,10 @@ class Upload extends Component{
         console.log(this.props.login);
         return(
             <View style={styles.formContainer}>
+                   {this.state.showCamera?(
+                    <MyCamera uploadPhoto={(url)=>this.uploadPhoto(url)}/>
+                ): ( 
+                    <>
             <Text>Nuevo Post</Text>
                 <TextInput
                     style={styles.input}
@@ -44,6 +62,9 @@ class Upload extends Component{
                 <TouchableOpacity style={styles.button} onPress={()=>this.onSubmit()}>
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
+                </>
+                )}
+
             </View>
         )
     }
@@ -53,6 +74,7 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        flex: 1
     },
     input:{
         height:100,

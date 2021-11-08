@@ -1,11 +1,14 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from "../firebase/config";
+import MyCamera from "../components/MyCamera";
+
 class Post extends Component{
     constructor(props){
         super(props)
         this.state={
             textoPost:'',
+            showCamera: true
         }
     }
 
@@ -32,18 +35,26 @@ class Post extends Component{
         console.log(this.props.login);
         return(
             <View style={styles.formContainer}>
-            <Text>Nuevo Post</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escriba aquí...'
-                    keyboardType='default'
-                    multiline
-                    value={this.state.textoPost}    
-                    />
-                <TouchableOpacity style={styles.button} onPress={()=>this.onSubmit()}>
-                    <Text style={styles.textButton}>Postear</Text>    
-                </TouchableOpacity>
+                {this.state.showCamera?(
+                    <MyCamera/>
+                ): (
+                    <>
+                    <Text>Nuevo Post</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(text)=>this.setState({textoPost: text})}
+                        placeholder='Escriba aquí...'
+                        keyboardType='default'
+                        multiline
+                        value={this.state.textoPost}    
+                        />
+                    <TouchableOpacity style={styles.button} onPress={()=>this.onSubmit()}>
+                        <Text style={styles.textButton}>Postear</Text>    
+                    </TouchableOpacity>
+                    </>
+                )}
+                
+           
             </View>
         )
     }
