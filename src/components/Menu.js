@@ -6,7 +6,8 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import Profile from '../screens/Profile';
 import Upload from '../screens/Upload';
-import { auth } from '../firebase/config';
+import { auth, db } from '../firebase/config';
+
 const Drawer = createDrawerNavigator();
 class Menu extends Component {
     constructor(props){
@@ -29,18 +30,20 @@ class Menu extends Component {
             }
         )
     }
-    register(email, pass){
+    register(email, pass, nickName){
         auth.createUserWithEmailAndPassword(email, pass)
             .then(()=>{
-                db.collection('User').add({
+                db.collection('Users').add({
                     owner: auth.currentUser.email,
                     createdAt: Date.now(),
-                    nickName: this.state.nickName,
+                    nickName: nickName,
                 })
                 .then(()=>{
                     // this.setState({
                     //     nickName: ''
                     // })
+
+                    console.log("Creado")
                 })
                 .catch( e => console.log(e))
                 
@@ -78,7 +81,7 @@ class Menu extends Component {
                 { this.state.loggedin === false ?
                 <Drawer.Navigator>
                     <Drawer.Screen name="Login" component={ ()=> <Login login={(email, pass)=>this.login(email, pass) } />}/>
-                    <Drawer.Screen name="Registro" component={ ()=> <Register register={(email, pass)=>this.register(email, pass)} />}/>
+                    <Drawer.Screen name="Registro" component={ ()=> <Register register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home />}/>

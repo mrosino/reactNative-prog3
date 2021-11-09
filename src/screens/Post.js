@@ -91,3 +91,5 @@ const styles = StyleSheet.create({
 
 })
 export default Post;
+
+//lo mio
