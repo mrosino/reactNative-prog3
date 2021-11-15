@@ -1,15 +1,3 @@
-// Dentro de la aplicación deben mostrarse una pantalla con el perfil de del usuario con la siguiente información y funcionalidades:
-// Nombre del usuario
-// Email del usuario.
-// Fecha de la última vez que ingresó a la aplicación.
-// Los datos de la cantidad total de posteos publicados.
-// Deben verse todos los posteos cargados por el usuario.
-// Ordenados cronológicamente comenzando por el último cargado.
-// Permitir borrado. Opcional: mostrar un alert para confirmar o cancelar el borrado del posteo.
-// Botón para el logout completo del usuario.
-// La pantalla será accesible únicamente para los usuarios logueados.
-
-
 import React, { Component } from "react";
 import {Text,TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput,} from "react-native";
 import { auth, db } from "../firebase/config";

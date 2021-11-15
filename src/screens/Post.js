@@ -18,6 +18,7 @@ class Post extends Component{
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
+            
         })
         .then(()=>{
          
@@ -32,7 +33,7 @@ class Post extends Component{
 
 
     render(){
-        console.log(this.props.login);
+       
         return(
             <View style={styles.form}>
                 {this.state.showCamera?(
@@ -92,4 +93,3 @@ const styles = StyleSheet.create({
 })
 export default Post;
 
-//lo mio
