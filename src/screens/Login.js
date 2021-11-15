@@ -11,17 +11,17 @@ class Login extends Component{
     }
 
     render(){
-        console.log(this.props.login);
+       
         return(
-            <View style={styles.formContainer}>
+            <View style={styles.form}>
                 <Text>Login</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.text}
                     onChangeText={(text)=>this.setState({email: text})}
                     placeholder='email'
                     keyboardType='email-address'/>
                 <TextInput
-                    style={styles.input}
+                    style={styles.text}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='password'
                     keyboardType='email-address'
@@ -35,11 +35,11 @@ class Login extends Component{
     }
 }
 const styles = StyleSheet.create({
-    formContainer:{
+    form:{
         paddingHorizontal:10,
         marginTop: 20,
     },
-    input:{
+    text:{
         height:20,
         paddingVertical:15,
         paddingHorizontal: 10,

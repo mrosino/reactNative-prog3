@@ -34,14 +34,14 @@ class Post extends Component{
     render(){
         console.log(this.props.login);
         return(
-            <View style={styles.formContainer}>
+            <View style={styles.form}>
                 {this.state.showCamera?(
                     <MyCamera/>
                 ): (
                     <>
                     <Text>Nuevo Post</Text>
                     <TextInput
-                        style={styles.input}
+                        style={styles.text}
                         onChangeText={(text)=>this.setState({textoPost: text})}
                         placeholder='Escriba aquí...'
                         keyboardType='default'
@@ -61,11 +61,11 @@ class Post extends Component{
 }
 
 const styles = StyleSheet.create({
-    formContainer:{
+    form:{
         paddingHorizontal:10,
         marginTop: 20,
     },
-    input:{
+    text:{
         height:100,
         paddingVertical:15,
         paddingHorizontal: 10,
