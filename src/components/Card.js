@@ -3,6 +3,7 @@ import {Image, Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatL
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
 
+
 class Card extends Component{
     constructor(props){
         super(props);
@@ -98,7 +99,7 @@ class Card extends Component{
         console.log(this.props.postData);
         return(
             <View style={styles.postContainer}>
-                <Image style={styles.image} source={ require('../../assets/paw.png')} resizeMode='contain'/>
+    
                 
                 <Text>{this.props.postData.data.textoPost}</Text>
                 <Text>{this.props.postData.data.owner}</Text>

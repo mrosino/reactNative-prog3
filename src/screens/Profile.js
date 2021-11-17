@@ -17,7 +17,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     //Traer datos de la db
-    db.collection("Posts").where("owner","==",auth.currentUser.email).orderBy("createdAt", "desc").limit(10)
+    db.collection("Posts").where("owner","==",auth.currentUser.displayName).orderBy("createdAt", "desc").limit(10)
       .onSnapshot((docs) => {
         let info = [];
         docs.forEach((doc) => {
@@ -37,9 +37,9 @@ class Profile extends Component {
     return (
       <View>
         <Text style={styles.title}> Mi perfil </Text>
-        <Text> Nombre de usuario:</Text>
+        <Text> Nombre de usuario:{auth.currentUser.displayName}</Text>
         <Text> Email:{this.state.email} </Text>
-        <Text> Ultimo inicio de sesion:</Text>
+        <Text> Ultimo inicio de sesion:{auth.currentUser.metadata.lastSignInTime}</Text>
         <Text> Cantidad total de posteos:{this.state.userPosts.length}</Text>
         <Text> Mis posteos:</Text>
         <FlatList
