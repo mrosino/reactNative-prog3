@@ -3,6 +3,7 @@ import {Image, Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatL
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
 
+
 class Card extends Component{
     constructor(props){
         super(props);
