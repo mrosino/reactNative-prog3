@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatList} from 'react-native';
+import {Image, Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatList, requireNativeComponent} from 'react-native';
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
 
@@ -98,21 +98,23 @@ class Card extends Component{
         console.log(this.props.postData);
         return(
             <View style={styles.postContainer}>
+                <Image style={styles.image} source={ require('../../assets/paw.png')} resizeMode='contain'/>
+                
                 <Text>{this.props.postData.data.textoPost}</Text>
                 <Text>{this.props.postData.data.owner}</Text>
                 <Text>Likes: {this.state.likes}</Text> 
                {
                    this.state.myLike ?
                     <TouchableOpacity onPress={()=>this.unlike()}>
-                        <Text>Quitar like</Text>
+                        <Text>Paws down</Text>
                     </TouchableOpacity>   :
                     <TouchableOpacity onPress={()=>this.likear()}>
-                        <Text>Me gusta</Text>
+                        <Text>Paws up!</Text>
                     </TouchableOpacity>
                }
                {/* Botón para activar el modal */}
                <TouchableOpacity onPress={()=>this.showModal()}>
-                   <Text>Ver comentarios</Text>
+                   <Text>Comment</Text>
                </TouchableOpacity>
 
                {/* Modal */}
@@ -179,6 +181,9 @@ const styles = StyleSheet.create({
      marginVertical: 10,
     boxShadow:'rgb(204 204 204) 0px 0px 12px 9px',
     backgroundColor:'#fff',
+    },
+    image:{
+        height:400,
     },
     closeButton:{
         backgroundColor:'#dc3545',

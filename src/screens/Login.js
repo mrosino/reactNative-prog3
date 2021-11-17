@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 class Login extends Component{
     constructor(props){
@@ -14,21 +15,21 @@ class Login extends Component{
        
         return(
             <View style={styles.form}>
-                <Text>Login</Text>
+                <Text>Log into your catspace</Text>
                 <TextInput
                     style={styles.text}
                     onChangeText={(text)=>this.setState({email: text})}
-                    placeholder='email'
+                    placeholder='Type your email'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.text}
                     onChangeText={(text)=>this.setState({password: text})}
-                    placeholder='password'
+                    placeholder='Type your catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.login(this.state.email, this.state.password)}>
-                    <Text style={styles.textButton}>Ingresar</Text>
+                    <Text style={styles.textButton}>Miau!</Text>
                 </TouchableOpacity>
             </View>
         )

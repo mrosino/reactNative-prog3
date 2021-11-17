@@ -8,7 +8,8 @@ class Post extends Component{
         super(props)
         this.state={
             textoPost:'',
-            showCamera: true
+            showCamera: true,
+            url:''
         }
     }
 
@@ -18,6 +19,9 @@ class Post extends Component{
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
+            likes:[],
+            comments:[],
+            photo:this.state.url
             
         })
         .then(()=>{
@@ -31,16 +35,21 @@ class Post extends Component{
         .catch( e => console.log(e))
     }
 
-
+    onImageUpload(url){
+        this.setState({
+            showCamera:false,
+            url:url
+        })
+        }
     render(){
        
         return(
             <View style={styles.form}>
                 {this.state.showCamera?(
-                    <MyCamera/>
+                    <MyCamera onImageUpload={(url)=>this.onImageUpload(url)}/>
                 ): (
                     <>
-                    <Text>Nuevo Post</Text>
+                    <Text>New PawMark</Text>
                     <TextInput
                         style={styles.text}
                         onChangeText={(text)=>this.setState({textoPost: text})}

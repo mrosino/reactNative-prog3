@@ -66,7 +66,7 @@ export default class MyCamera extends Component {
                         <View style={styles.viewCamera}>
                         <Camera style={styles.camera} type={Camera.Constants.Type.back} ref={(reference)=>this.camera=reference}/> 
                         <TouchableOpacity style={styles.viewCamera} onPress={()=>this.takePhoto()}>
-                            <Text>Sacar foto</Text>
+                            <Text>Say Whiskas!</Text>
                         </TouchableOpacity>
                     </View>
                     ):
@@ -75,11 +75,11 @@ export default class MyCamera extends Component {
                     <>
                     <Image style={styles.camera} source={{uri:this.state.photo}}/>
                     <TouchableOpacity style={styles.viewCamera} onPress={()=>this.savePhoto()} >
-                    <Text>Guarda foto</Text>
+                    <Text>Save this</Text>
                      </TouchableOpacity>
 
                        <TouchableOpacity style={styles.viewCamera} onPress={()=>this.newPhoto()}>
-                       <Text>Sacar foto nueva</Text>
+                       <Text>Not my profile, take another one!</Text>
                    </TouchableOpacity>
                    </>
 
@@ -87,7 +87,7 @@ export default class MyCamera extends Component {
 
                 )
                 :(
-                    <Text> No hay permisos</Text>
+                    <Text> Not allowed</Text>
                 )
             }
             </View>

@@ -17,22 +17,22 @@ class Register extends Component{
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
-                    placeholder='email'
+                    placeholder='Type your email'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({userName: text})}
-                    placeholder='user name'
+                    placeholder='catname'
                     keyboardType='default'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
-                    placeholder='password'
+                    placeholder='catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.userName)}>
-                    <Text style={styles.textButton}>Registrarse</Text>    
+                    <Text style={styles.textButton}>Register your meow</Text>    
                 </TouchableOpacity>
             </View>
         )

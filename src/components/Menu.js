@@ -39,17 +39,15 @@ class Menu extends Component {
                     nickName: nickName,
                 })
                 .then(()=>{
-                    // this.setState({
-                    //     nickName: ''
-                    // })
-
-                    console.log("Creado")
+                  console.log("Creado")
                 })
                 .catch( e => console.log(e))
                 
             })
             .catch( error => {
-                console.log(error);
+                console.log(`Usuario ya registrado. ${error}`);
+                //armar modal de aviso
+
             })
     }
     login(email, pass){
@@ -62,7 +60,9 @@ class Menu extends Component {
                 })
             })
             .catch(error => {
-                console.log(error);
+                console.log(`Credenciales incorrectas. ${error}`);
+                //armar modal de aviso
+
             })
     }
     logout(){
@@ -80,13 +80,13 @@ class Menu extends Component {
             <NavigationContainer>
                 { this.state.loggedin === false ?
                 <Drawer.Navigator>
-                    <Drawer.Screen name="Login" component={ ()=> <Login login={(email, pass)=>this.login(email, pass) } />}/>
-                    <Drawer.Screen name="Registro" component={ ()=> <Register register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
+                    <Drawer.Screen name="Log into your CatSpace!" component={ ()=> <Login login={(email, pass)=>this.login(email, pass) } />}/>
+                    <Drawer.Screen name="Register your paw!" component={ ()=> <Register register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home />}/>
-                    <Drawer.Screen name="Nuevo Post" component={ (drawerProps)=> <Upload drawerProps={drawerProps}/>}/>
-                    <Drawer.Screen name="Mi Perfil" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
+                    <Drawer.Screen name="New pawmark" component={ (drawerProps)=> <Upload drawerProps={drawerProps}/>}/>
+                    <Drawer.Screen name="Miauself" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
                 </Drawer.Navigator>
                 }
             </NavigationContainer>

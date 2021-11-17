@@ -32,7 +32,7 @@ class Home extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.title}> Bienvenidos </Text>
+        <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
 
         <FlatList
           data={this.state.posts}
@@ -45,6 +45,7 @@ class Home extends Component {
 }
 const styles = StyleSheet.create({
   title: {
+    
     fontSize: 20,
     fontWeight: "bold",
     textDecoration: "underline",
