@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 //Aquí importo la configuración del auth que me ofrece firebase
 import { auth, db } from '../firebase/config';
 import { TextInput, ActivityIndicator, FlatList, View } from 'react-native';
+import Card from '../components/Card'
 
-//-------------------------------------------------------------
+
 
 class buscador extends Component{
     constructor(props){
@@ -44,8 +45,8 @@ class buscador extends Component{
                 <ActivityIndicator color={"green"} size={"large"} /> :
                     <FlatList
                         data={this.state.posts}
-                        keyExtractor={(post) => post.id}
-                        renderItem={({item}) => <Post doc={item} /> }
+                        keyExtractor={(card) => card.id}
+                        renderItem={({item}) => <Card doc={item} /> }
                     />       
                 }
             </React.Fragment>
