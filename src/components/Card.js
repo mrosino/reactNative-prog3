@@ -98,7 +98,7 @@ class Card extends Component{
         console.log(this.props.postData);
         return(
             <View style={styles.postContainer}>
-                <Image style={styles.image} source={ require('../../assets/paw.png')} resizeMode='contain'/>
+                <Image style={styles.image} source={{uri:this.props.postData.data.image}} resizeMode='contain'/>
                 
                 <Text>{this.props.postData.data.textoPost}</Text>
                 <Text>{this.props.postData.data.owner}</Text>

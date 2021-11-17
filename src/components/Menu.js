@@ -6,7 +6,7 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import Profile from '../screens/Profile';
 import Upload from '../screens/Upload';
-import buscador from '../screens/buscador';
+import Buscador from '../screens/Buscador';
 
 import { auth, db } from '../firebase/config';
 
@@ -87,7 +87,7 @@ class Menu extends Component {
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home />}/>
-                    <Drawer.Screen name="Buscador" component={ () => <buscador /> }/>
+                    <Drawer.Screen name="Buscador" component={ () => <Buscador /> }/>
                     <Drawer.Screen name="New pawmark" component={ (drawerProps)=> <Upload drawerProps={drawerProps}/>}/>
                     <Drawer.Screen name="Miauself" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
                 </Drawer.Navigator>

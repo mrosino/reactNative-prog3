@@ -21,7 +21,7 @@ class Post extends Component{
             textoPost: this.state.textoPost,
             likes:[],
             comments:[],
-            photo:this.state.url
+            image:this.state.url
             
         })
         .then(()=>{

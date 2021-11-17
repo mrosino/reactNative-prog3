@@ -35,9 +35,11 @@ class buscador extends Component{
 
     render(){
         return(
-            <React.Fragment>
+            <View>
                 <TextInput
                     onChangeText={(text)=>this.search(text)}
+                    placeholder='Buscar'
+                    keyboardType='default'
                 />
                
                 {this.state.loading ?
@@ -48,7 +50,7 @@ class buscador extends Component{
                         renderItem={({item}) => <Post doc={item} /> }
                     />       
                 }
-            </React.Fragment>
+            </View>
         )
     }
 }
