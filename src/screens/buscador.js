@@ -18,7 +18,9 @@ class buscador extends Component{
     
     search(text){
         console.log(text);
-        db.collection('posts').where('username','==',text).get().then(docs => {
+        db.collection('Posts').where('owner','==',text).onSnapshot(
+            docs => {
+                console.log(docs)
             let posts=[];
             docs.forEach(doc => {
                 posts.push({
@@ -47,8 +49,8 @@ class buscador extends Component{
                 <ActivityIndicator color={"green"} size={"large"} /> :
                     <FlatList
                         data={this.state.posts}
-                        keyExtractor={(card) => card.id}
-                        renderItem={({item}) => <Card doc={item} /> }
+                        keyExtractor={(card) => card.id.toString()}
+                        renderItem={({item}) => <Card postData={item} /> }
                     />       
                 }
             </View>
