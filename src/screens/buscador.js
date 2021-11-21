@@ -41,7 +41,7 @@ class buscador extends Component{
             <View>
                 <TextInput
                     onChangeText={(text)=>this.search(text)}
-                    placeholder='Buscar'
+                    placeholder='Ingresa el mail que quieres buscar'
                     keyboardType='default'
                 />
                
