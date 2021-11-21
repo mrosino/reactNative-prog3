@@ -55,12 +55,9 @@ class buscador extends Component{
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(card) => card.id.toString()}
-<<<<<<< Updated upstream
                         renderItem={({item}) => <Card postData={item} /> }
-=======
                         // si no hay resultados  mensaje: “El usuario no existe o aún no tiene publicaciones”
                         renderItem={({item}) => <Card style={styles.post} postData={item} /> }
->>>>>>> Stashed changes
                     />       
                 }
             </View>
