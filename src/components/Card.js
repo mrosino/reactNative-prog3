@@ -144,7 +144,7 @@ class Card extends Component {
                 data={this.props.postData.data.comments}
                 keyExtractor={(post) => post.createdAt.toString()}
                 renderItem={({ item }) => (
-                  <Text>
+                  <Text style={styles.tpost}>
                     {" "}
                     {item.author}: {item.commentText}
                   </Text>
@@ -153,11 +153,11 @@ class Card extends Component {
             ) : (
               <Text></Text>
             )}
-         
+
             <View>
               <TextInput
                 keyboardType="defualt"
-                placeholder="Escribí tu comentario"
+                placeholder="Send love"
                 onChangeText={(text) => {
                   this.setState({ comment: text });
                 }}
@@ -165,7 +165,7 @@ class Card extends Component {
                 value={this.state.comment}
               />
               <TouchableOpacity onPress={() => this.publicarComentario()}>
-                <Text>Comentar</Text>
+                <Text>Send</Text>
               </TouchableOpacity>
             </View>
           </Modal>
@@ -179,22 +179,25 @@ class Card extends Component {
 
 const styles = StyleSheet.create({
   postContainer: {
-    borderColor: "#ccc",
+    backgroundColor: "#F9F1F1",
     borderWidth: 1,
+    borderColor:"#C68085",
+    borderRadius: 6,
     borderStyle: "solid",
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginBottom: 15,
     marginHorizontal: 10,
   },
+ 
   modalContainer: {
     width: "80%",
-    borderRadius: 10,
+    borderRadius: 25,
     padding: 10,
     alignSelf: "center",
     marginVertical: 10,
     boxShadow: "rgb(204 204 204) 0px 0px 12px 9px",
-    backgroundColor: "#fff",
+    backgroundColor: "#F9F1F1",
   },
   image: {
     height: 400,
@@ -207,6 +210,10 @@ const styles = StyleSheet.create({
     margin: 5,
     alignSelf: "flex-end",
   },
+  tpost:{
+    alignSelf: 'center',
+    textAlign: "center",
+  }
 });
 
 export default Card;

@@ -32,9 +32,7 @@ class Home extends Component {
   render() {
     return (
       <View>
-         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
-          <Text style={styles.textButton}>Close claw</Text>
-        </TouchableOpacity>
+      
         <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
        
         <FlatList
