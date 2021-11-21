@@ -43,7 +43,7 @@ class Profile extends Component {
         <Text style={styles.title}>Miau-Space </Text>
        <Text> Cat-mail:{this.state.email} </Text>
         <Text> Last log{auth.currentUser.metadata.lastSignInTime}</Text>
-        <Text> Paw-amount{this.state.userPosts.length}</Text>
+        <Text> Paw-amount: {this.state.userPosts.length}</Text>
       
         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
           <Text style={styles.textButton}>Close claw</Text>
