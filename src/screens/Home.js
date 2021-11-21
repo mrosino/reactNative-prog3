@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text,TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput,} from "react-native";
+import { Text,View,StyleSheet,FlatList} from "react-native";
 import { db, auth } from "../firebase/config";
 import Card from "../components/Card"
 
@@ -44,8 +44,7 @@ class Home extends Component {
   }
 }
 const styles = StyleSheet.create({
-  title: {
-    
+  title: { 
     fontSize: 20,
     fontWeight: "bold",
     textDecoration: "underline",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 //Aquí importo la configuración del auth que me ofrece firebase
 import { auth, db } from '../firebase/config';
-import { TextInput, ActivityIndicator, FlatList, View } from 'react-native';
+import { TextInput, ActivityIndicator, FlatList, View, StyleSheet } from 'react-native';
 import Card from '../components/Card'
 
 
@@ -38,8 +38,9 @@ class buscador extends Component{
 
     render(){
         return(
-            <View>
+            <View style={styles.buscador}>
                 <TextInput
+                    style={styles.text}
                     onChangeText={(text)=>this.search(text)}
                     placeholder='Ingresa el mail que quieres buscar'
                     keyboardType='default'
@@ -50,11 +51,38 @@ class buscador extends Component{
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(card) => card.id.toString()}
-                        renderItem={({item}) => <Card postData={item} /> }
+                        renderItem={({item}) => <Card style={styles.post} postData={item} /> }
                     />       
                 }
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    text:{
+        width:"100%",
+        borderWidth:1,
+        borderColor: '#ccc',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical:10,
+        textAlign: "center"
+    },
+    buscador:{
+        borderColor: 'green',
+        borderWidth: 1,
+        borderStyle:'solid',
+        backgroundColor:""
+    
+    },
+    post: {
+        width:1000,
+        
+      },
+
+    })
+
+
+
 export default buscador;
