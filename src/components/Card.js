@@ -111,22 +111,22 @@ class Card extends Component {
           resizeMode="contain"
         />
 
-       
-        <Text>{this.props.postData.data.owner}</Text>
-        <Text>Likes: {this.state.likes}</Text>
-        {this.state.myLike ? (
-          <TouchableOpacity onPress={() => this.unlike()}>
-            <Text>Paws down</Text>
+        <Text style={styles.info}>Posted by {this.props.postData.data.owner}</Text>
+        <Text style={styles.info}>Liked by {this.state.likes} kittens</Text>
+        <View style={styles.textpost}>
+          {this.state.myLike ? (
+            <TouchableOpacity onPress={() => this.unlike()}>
+              <Text style={styles.postbutton1}>Paws down :( </Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => this.likear()}>
+              <Text style={styles.postbutton2}>Paws up! :) </Text>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={() => this.showModal()}>
+            <Text style={styles.postbutton}>InteraCations</Text>
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => this.likear()}>
-            <Text>Paws up!</Text>
-          </TouchableOpacity>
-        )}
-
-        <TouchableOpacity onPress={() => this.showModal()}>
-          <Text>Comment</Text>
-        </TouchableOpacity>
+        </View>
 
         {this.state.showModal ? (
           <Modal
@@ -144,7 +144,7 @@ class Card extends Component {
                 data={this.props.postData.data.comments}
                 keyExtractor={(post) => post.createdAt.toString()}
                 renderItem={({ item }) => (
-                  <Text style={styles.tpost}>
+                  <Text>
                     {" "}
                     {item.author}: {item.commentText}
                   </Text>
@@ -181,15 +181,16 @@ const styles = StyleSheet.create({
   postContainer: {
     backgroundColor: "#F9F1F1",
     borderWidth: 1,
-    borderColor:"#C68085",
+    borderColor: "#C68085",
     borderRadius: 6,
     borderStyle: "solid",
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginBottom: 15,
     marginHorizontal: 10,
+    textAlign: "center",
   },
- 
+
   modalContainer: {
     width: "80%",
     borderRadius: 25,
@@ -210,10 +211,49 @@ const styles = StyleSheet.create({
     margin: 5,
     alignSelf: "flex-end",
   },
-  tpost:{
-    alignSelf: 'center',
+  textpost: {
+    borderRadius: 3,
+    borderColor: "#28a745",
     textAlign: "center",
-  }
+    alignSelf: "center",
+    alignContent: "center",
+  },
+  postbutton: {
+    backgroundColor: "#BC6760",
+    margin: 2,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    textAlign: "center",
+    borderRadius: 4,
+    borderStyle: "solid",
+    width: "inherit",
+  },
+  postbutton1: {
+    backgroundColor: "#B14D3A",
+    margin: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    textAlign: "center",
+    borderRadius: 4,
+    borderStyle: "solid",
+  },
+  postbutton2: {
+    backgroundColor: "#CC8E93",
+    margin: 2,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    textAlign: "center",
+    borderRadius: 4,
+    borderStyle: "solid",
+  },
+  info: {
+    backgroundColor: "#F2E3E4",
+    margin: 2,
+    paddingVertical: 6,
+    textAlign: "center",
+    fontWeight: "bolder",
+    borderRadius: 4,
+  },
 });
 
 export default Card;
