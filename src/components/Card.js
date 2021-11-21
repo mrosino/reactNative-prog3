@@ -111,7 +111,7 @@ class Card extends Component {
           resizeMode="contain"
         />
 
-        <Text>{this.props.postData.data.textoPost}</Text>
+       
         <Text>{this.props.postData.data.owner}</Text>
         <Text>Likes: {this.state.likes}</Text>
         {this.state.myLike ? (

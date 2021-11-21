@@ -7,6 +7,7 @@ import Card from '../components/Card'
 
 
 
+
 class buscador extends Component{
     constructor(props){
         super(props);
@@ -39,19 +40,22 @@ class buscador extends Component{
     render(){
         return(
             <View style={styles.buscador}>
+                
+                <View >
                 <TextInput
                     style={styles.text}
                     onChangeText={(text)=>this.search(text)}
-                    placeholder='Ingresa el mail que quieres buscar'
+                    placeholder='Ingresa el mail del usuario que deseas buscar'
                     keyboardType='default'
                 />
+                </View>
                
                 {this.state.loading ?
                 <ActivityIndicator color={"green"} size={"large"} /> :
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(card) => card.id.toString()}
-                        renderItem={({item}) => <Card style={styles.post} postData={item} /> }
+                        renderItem={({item}) => <Card postData={item} /> }
                     />       
                 }
             </View>
@@ -63,22 +67,26 @@ const styles = StyleSheet.create({
     text:{
         width:"100%",
         borderWidth:1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
-        textAlign: "center"
+        textAlign: "center",
+        backgroundColor: "white",
+        paddingStart: 10,
+        paddingEnd: 10,
     },
     buscador:{
-        borderColor: 'green',
         borderWidth: 1,
-        borderStyle:'solid',
-        backgroundColor:""
-    
+        backgroundColor: "#D9ABAE",
+        paddingVertical: 10,
+        marginVertical: 50,
+        width: "100%",
     },
-    post: {
-        width:1000,
-        
+   
+    title: { 
+        fontSize: 20,
+        fontWeight: "bold",
+        textDecoration: "underline",
+        textAlign: "center",
       },
 
     })
