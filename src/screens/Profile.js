@@ -7,7 +7,7 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      name:auth.currentUser.userName,
+      name:auth.currentUser.nickname,
       email: auth.currentUser.email,
       fecha:"",
       userPosts:"",
@@ -15,9 +15,13 @@ class Profile extends Component {
     };
     
   }
+
+
+
   componentDidMount() {
     //Traer datos de la db
-    db.collection("Posts").where("owner","==",auth.currentUser.displayName).orderBy("createdAt", "desc").limit(10)
+    console.log(auth.currentUser);
+    db.collection("Posts").where("owner","==",auth.currentUser.email).orderBy("createdAt", "desc").limit(10)
       .onSnapshot((docs) => {
         let info = [];
         docs.forEach((doc) => {
@@ -36,20 +40,20 @@ class Profile extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.title}> Mi perfil </Text>
-        <Text> Nombre de usuario:{auth.currentUser.displayName}</Text>
-        <Text> Email:{this.state.email} </Text>
-        <Text> Ultimo inicio de sesion:{auth.currentUser.metadata.lastSignInTime}</Text>
-        <Text> Cantidad total de posteos:{this.state.userPosts.length}</Text>
-        <Text> Mis posteos:</Text>
+        <Text style={styles.title}>Miau-Space </Text>
+       <Text> Cat-mail:{this.state.email} </Text>
+        <Text> Last log{auth.currentUser.metadata.lastSignInTime}</Text>
+        <Text> Paw-amount{this.state.userPosts.length}</Text>
+      
+        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
+          <Text style={styles.textButton}>Close claw</Text>
+        </TouchableOpacity>
+
         <FlatList
           data={this.state.userPosts}
           keyExtractor={(card) => card.id}
           renderItem={({ item }) => <Card postData={item}/>}
         />
-        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
-          <Text style={styles.textButton}>Cerrar sesion </Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -65,8 +69,13 @@ const styles = StyleSheet.create({
     height: 250,
   },
   textButton:{
-    fontSize:30,
     textAlign: "center",
+    backgroundColor: "#AD4E5C",
+    color: "#FFF",
+    padding: 5,
+    borderRadius: 4,
+    margin: 5,
+    alignSelf: "flex-end",
   
   },
 });

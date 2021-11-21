@@ -86,7 +86,7 @@ class Menu extends Component {
                     <Drawer.Screen name="Register your paw!" component={ ()=> <Register register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
-                    <Drawer.Screen name="Home" component={ ()=> <Home />}/>
+                    <Drawer.Screen name="Home" component={ ()=> <Home logout={()=>this.logout()} />}/>
                     <Drawer.Screen name="Buscador" component={ () => <Buscador /> }/>
                     <Drawer.Screen name="New pawmark" component={ (drawerProps)=> <Upload drawerProps={drawerProps}/>}/>
                     <Drawer.Screen name="Miauself" component={ ()=> <Profile userData={this.state.userData} logout={()=>this.logout()} />}/>
