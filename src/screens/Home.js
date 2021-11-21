@@ -33,7 +33,9 @@ class Home extends Component {
     return (
       <View>
         <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
-
+        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
+          <Text style={styles.textButton}>Close claw</Text>
+        </TouchableOpacity>
         <FlatList
           data={this.state.posts}
           keyExtractor={(card) => card.id}
