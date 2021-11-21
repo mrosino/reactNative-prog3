@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text,View,StyleSheet,FlatList} from "react-native";
+import { Text,View,StyleSheet,FlatList, TouchableOpacity} from "react-native";
 import { db, auth } from "../firebase/config";
 import Card from "../components/Card"
 
@@ -32,10 +32,11 @@ class Home extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
+         <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
           <Text style={styles.textButton}>Close claw</Text>
         </TouchableOpacity>
+        <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
+       
         <FlatList
           data={this.state.posts}
           keyExtractor={(card) => card.id}
@@ -51,6 +52,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textDecoration: "underline",
     textAlign: "center",
+  },
+  textButton:{
+    textAlign: "center",
+    backgroundColor: "#AD4E5C",
+    color: "#FFF",
+    padding: 5,
+    borderRadius: 4,
+    margin: 5,
+    alignSelf: "flex-end",
+  
   },
   imagen: {
     height: 250,
