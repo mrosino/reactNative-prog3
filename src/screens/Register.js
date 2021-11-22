@@ -7,6 +7,7 @@ class Register extends Component{
             email:'',
             userName:'',
             password:'',
+            error: "",
         }
     }
  
@@ -31,6 +32,12 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
+                         {
+                        this.props.error ?
+                            <Text style={styles.alert}>{this.props.error}</Text>
+                            :
+                            <React.Fragment></React.Fragment>
+                    }
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.userName)}>
                     <Text style={styles.textButton}>Register your meow</Text>    
                 </TouchableOpacity>

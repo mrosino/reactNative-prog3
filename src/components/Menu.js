@@ -17,7 +17,8 @@ class Menu extends Component {
         this.state = {
             loggedin: false,
             userData: {},
-            nickName:""
+            nickName:"",
+            error: "",
         }
     }
     componentDidMount(){
@@ -47,8 +48,10 @@ class Menu extends Component {
                 
             })
             .catch( error => {
-                console.log(`Usuario ya registrado. ${error}`);
-                //armar modal de aviso
+                this.setState({
+                    error: error.message,
+                })
+              
 
             })
     }
@@ -62,7 +65,9 @@ class Menu extends Component {
                 })
             })
             .catch(error => {
-                console.log(`Credenciales incorrectas. ${error}`);
+                this.setState({
+                    error: error.message,
+                })
                 //armar modal de aviso
 
             })
@@ -82,8 +87,8 @@ class Menu extends Component {
             <NavigationContainer>
                 { this.state.loggedin === false ?
                 <Drawer.Navigator>
-                    <Drawer.Screen name="Log into your CatSpace!" component={ ()=> <Login login={(email, pass)=>this.login(email, pass) } />}/>
-                    <Drawer.Screen name="Register your paw!" component={ ()=> <Register register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
+                    <Drawer.Screen name="Log into your CatSpace!" component={ ()=> <Login error={this.state.error} login={(email, pass)=>this.login(email, pass) } />}/>
+                    <Drawer.Screen name="Register your paw!" component={ ()=> <Register error={this.state.error} register={(email, pass, nickName)=>this.register(email, pass, nickName)} />}/>
                 </Drawer.Navigator>:
                 <Drawer.Navigator>
                     <Drawer.Screen name="Home" component={ ()=> <Home  />}/>
