@@ -72,6 +72,12 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
-    }
+    },
+    alert: {
+        color: 'red',
+        fontSize: 16,
+        textAlign: 'center',
+        marginVertical: 10,
+    },
 })
 export default Register;
