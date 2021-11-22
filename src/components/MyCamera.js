@@ -3,6 +3,8 @@ import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Camera } from "expo-camera";
 import { storage } from "../firebase/config";
 
+
+
 export default class MyCamera extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +17,9 @@ export default class MyCamera extends Component {
   }
 
   componentDidMount() {
-    Camera.requestCameraPermissionsAsync().then(() => {
+    Camera.requestCameraPermissionsAsync().then((response) => {
       this.setState({
-        permissions: true,
+        permissions: response.granted,
       });
     });
   }
