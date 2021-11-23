@@ -54,7 +54,7 @@ class buscador extends Component{
                         data={this.state.posts}
                         keyExtractor={(card) => card.id.toString()}
                         renderItem={({item}) => <Card postData={item} /> }
-                        // si no hay resultados  mensaje: “El usuario no existe o aún no tiene publicaciones”
+                        
                         renderItem={({item}) => <Card style={styles.post} postData={item} /> }
                     />       
                 }

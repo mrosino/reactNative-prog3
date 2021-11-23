@@ -7,7 +7,7 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      name: auth.currentUser.nickName,
+      name: auth.currentUser.displayName,
       email: auth.currentUser.email,
       fecha: "",
       userPosts: "",
@@ -38,15 +38,19 @@ class Profile extends Component {
 
   }
   render() {
+    console.log(auth.currentUser);
     return (
       <View>
+        <TouchableOpacity style={styles.close} onPress={() => this.props.logout()}>
+          <Text style={styles.textButton}>Close claw</Text>
+        </TouchableOpacity>
         <Text style={styles.title}>Miau-Space </Text>
         <View style={styles.information}>
         
-        <Text> Cat-name: {this.state.nickName} </Text>
+        <Text> Cat-name: {this.state.name} </Text>
           <Text> Cat-mail: {this.state.email} </Text>
           <Text> Last log: {auth.currentUser.metadata.lastSignInTime}</Text>
-          <Text> Paw-amount: {this.state.userPosts.length}</Text>
+          <Text> Pawmark amount: {this.state.userPosts.length}</Text>
         </View>
 
 
@@ -56,9 +60,7 @@ class Profile extends Component {
           keyExtractor={(card) => card.id}
           renderItem={({ item }) => <Card postData={item} />}
         />
-        <TouchableOpacity style={styles.button} onPress={() => this.props.logout()}>
-          <Text style={styles.textButton}>Close claw</Text>
-        </TouchableOpacity>
+        
       </View>
     );
   }
@@ -87,5 +89,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
 
   },
+  close:{
+    alignSelf: 'flex-end'
+  }
 });
 export default Profile;

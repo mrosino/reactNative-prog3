@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text,View,StyleSheet,FlatList, TouchableOpacity} from "react-native";
+import { Text,View,StyleSheet,FlatList, TouchableOpacity, Image} from "react-native";
 import { db, auth } from "../firebase/config";
 import Card from "../components/Card"
 
@@ -33,7 +33,12 @@ class Home extends Component {
     return (
       <View>
       
-        <Text style={styles.title}> Me parece que vi un lindo gatito </Text>
+        <Text style={styles.title}> I tawt I taw puddy tat </Text>
+        <Image
+          style={styles.imageT}
+          source={require( '../../assets/tweety.png' )}
+          resizeMode="contain"
+        />
        
         <FlatList
           data={this.state.posts}
@@ -62,6 +67,10 @@ const styles = StyleSheet.create({
   },
   imagen: {
     height: 250,
+  },
+  imageT: {
+    height: 150,
+    marginEnd: 40,
   },
 });
 export default Home;
