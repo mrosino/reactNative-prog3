@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Text,View,StyleSheet,FlatList, TouchableOpacity, Image,ActivityIndicator} from "react-native";
-import { db, auth } from "../firebase/config";
+import { Text,View,StyleSheet,FlatList, Image,ActivityIndicator} from "react-native";
+
+import { db } from "../firebase/config";
 import Card from "../components/Card"
 
 class Home extends Component {
@@ -8,50 +9,58 @@ class Home extends Component {
     super();
     this.state = {
       posts: [],
-      loaded: false,
+      loading: false,
     };
   }
+
   componentDidMount() {
- 
-    db.collection("Posts")
-      .orderBy("createdAt", "desc")
-      .onSnapshot((docs) => {
-        let posteos = [];
-        docs.forEach((doc) => {
-          posteos.push({
-            id: doc.id,
-            data: doc.data(),
-          });
-        });
-        console.log(posteos);
-        this.setState({
-          posts: posteos,
-          loaded:true
+    this.fetchPosts();
+  }
+
+  fetchPosts = () => {
+    this.setState({ loading: true });
+
+    db.collection("Posts").orderBy("createdAt", "desc").onSnapshot((docs) => {
+      let posteos = [];
+      docs.forEach((doc) => {
+        posteos.push({
+          id: doc.id,
+          data: doc.data(),
         });
       });
-   
+
+      this.setState({
+        posts: posteos,
+        loading: false
+      });
+    });
   }
+
   render() {
-    return (
-      <View>
-      
-     
-       
-        {this.state.loaded == false ?<ActivityIndicator color={"black"} size={"large"} /> :
-         <View> <Text style={styles.title}> I tawt I taw puddy tat </Text> 
-        <Image style={styles.imageT} source={require( '../../assets/tweety.png' )}  resizeMode="contain"/> 
-        </View>
-        }
-       
+    const { loading } = this.state;
+
+    if (!loading) {
+      return (
+        <View> 
+          <Text style={styles.title}> I tawt I taw puddy tat </Text> 
+          <Image 
+            style={styles.imageT} 
+            source={require( '../../assets/tweety.png' )} 
+            resizeMode="contain"
+          /> 
         <FlatList
           data={this.state.posts}
           keyExtractor={(card) => card.id.toString()}
           renderItem={({ item }) => <Card postData={item}/>}
         />
-      </View>
-    );
+        </View>
+      )
+    }
+
+    return <ActivityIndicator color={"black"} size={"large"} />;
   }
 }
+
 const styles = StyleSheet.create({
   title: { 
     fontSize: 20,
@@ -66,7 +75,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     margin: 5,
     alignSelf: "flex-end",
-  
   },
   imagen: {
     height: 250,
@@ -75,6 +83,6 @@ const styles = StyleSheet.create({
     height: 150,
     marginEnd: 40,
   },
-  
 });
+
 export default Home;

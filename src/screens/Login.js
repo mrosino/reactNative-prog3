@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -11,37 +11,55 @@ class Login extends Component {
         }
     }
 
+    handleLogin = () => {
+        const { login } = this.props;
+        const { email, password } = this.state;  
+
+        login(email, password)
+    }
+
+    handleInputChange = (key) => {
+        return (value) => {
+            this.setState({ [key]: value })
+        }
+    }
+
     render() {
+        const { error } = this.props;
+        const { email, password } = this.state;
+        const isButtonDisabled = !email || !password;
 
         return (
             <View style={styles.form}>
                 <Text>Log into your catspace</Text>
                 <TextInput
                     style={styles.text}
-                    onChangeText={(text) => this.setState({ email: text })}
+                    onChangeText={this.handleInputChange('email')}
                     placeholder='Type your email'
-                    keyboardType='email-address' />
+                    keyboardType='email-address' 
+                    autoComplete="off"
+                />
                 <TextInput
                     style={styles.text}
-                    onChangeText={(text) => this.setState({ password: text })}
+                    onChangeText={this.handleInputChange('password')}
                     placeholder='Type your catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
+                    autoComplete="off"
                 />
-                {
-                    this.props.error ?
-                        <Text style={styles.alert}>{this.props.error}</Text>
-                        :
-                        <React.Fragment></React.Fragment>
-                }
-                <TouchableOpacity style={styles.button} onPress={() => this.props.login(this.state.email, this.state.password)}>
+                <TouchableOpacity 
+                    style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled} 
+                    onPress={this.handleLogin}
+                    disabled={isButtonDisabled}
+                >
                     <Text style={styles.textButton}>Fur-ward</Text>
                 </TouchableOpacity>
-              
+                {error && <Text style={styles.alert}>{error}</Text>}
             </View>
         )
     }
 }
+
 const styles = StyleSheet.create({
     form: {
         paddingHorizontal: 10,
@@ -57,15 +75,27 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical: 10,
     },
-    button: {
-        backgroundColor: '#F8F2F8',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
+    buttonDisabled: {
         textAlign: 'center',
         borderRadius: 4,
         borderWidth: 2,
         borderStyle: 'solid',
-        borderColor: '#AD4E5C',   
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderColor: 'orange',
+        backgroundColor: 'red', 
+        cursor: 'not-allowed'
+    },
+    buttonEnabled: {
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 2,
+        borderStyle: 'solid',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderColor: '#AD4E5C', 
+        backgroundColor: '#F8F2F8',
+        cursor: 'pointer'
     },
     textButton: {
         color: '#AD60A9',
@@ -77,5 +107,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 10,
     },
-})
+});
+
 export default Login;
