@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text,View,StyleSheet,FlatList, TouchableOpacity, Image} from "react-native";
+import { Text,View,StyleSheet,FlatList, TouchableOpacity, Image,ActivityIndicator} from "react-native";
 import { db, auth } from "../firebase/config";
 import Card from "../components/Card"
 
@@ -8,6 +8,7 @@ class Home extends Component {
     super();
     this.state = {
       posts: [],
+      loader:true,
     };
   }
   componentDidMount() {
@@ -25,6 +26,7 @@ class Home extends Component {
         console.log(posteos);
         this.setState({
           posts: posteos,
+          loader:false
         });
       });
    
@@ -39,10 +41,13 @@ class Home extends Component {
           source={require( '../../assets/tweety.png' )}
           resizeMode="contain"
         />
-       
+       {this.state.loader ?
+       <ActivityIndicator />
+      :
+      <React.Fragment></React.Fragment>}
         <FlatList
           data={this.state.posts}
-          keyExtractor={(card) => card.id}
+          keyExtractor={(card) => card.id.toString()}
           renderItem={({ item }) => <Card postData={item}/>}
         />
       </View>
