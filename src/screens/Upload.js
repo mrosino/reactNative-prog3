@@ -11,8 +11,13 @@ class Upload extends Component{
             textoPost:'',
             showCamera: true,
             url: '',
-            
+            loaded: false            
         }
+    }
+    componentDidMount(){
+        this.setState({
+            loaded:true
+          });
     }
 
     uploadPhoto(url){
@@ -24,15 +29,15 @@ class Upload extends Component{
     }
 
     onSubmit(){
-        console.log('Posteando...');
         db.collection('Posts').add({
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
-            image: this.state.url
+            image: this.state.url,
+            likes:[],
+            comments:[],
         })
         .then(()=>{
-            console.log('posteado ok.')
             this.setState({
                 textoPost: ''
             })
@@ -44,7 +49,6 @@ class Upload extends Component{
 
 
     render(){
-        console.log(this.props.login);
         return(
             <View style={styles.formContainer}>
                    {this.state.showCamera?(
@@ -60,6 +64,7 @@ class Upload extends Component{
                     multiline
                     value={this.state.textoPost}    
                     />
+                     {this.state.loaded == false ?<ActivityIndicator color={"black"} size={"large"} /> : <React.Fragment></React.Fragment>}
                 <TouchableOpacity style={styles.button} onPress={()=>this.onSubmit()}>
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>

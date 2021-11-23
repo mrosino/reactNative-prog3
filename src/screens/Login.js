@@ -35,8 +35,9 @@ class Login extends Component {
                         <React.Fragment></React.Fragment>
                 }
                 <TouchableOpacity style={styles.button} onPress={() => this.props.login(this.state.email, this.state.password)}>
-                    <Text style={styles.textButton}>Miau!</Text>
+                    <Text style={styles.textButton}>Fur-ward</Text>
                 </TouchableOpacity>
+              
             </View>
         )
     }
@@ -57,17 +58,18 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     button: {
-        backgroundColor: '#28A745',
+        backgroundColor: '#F8F2F8',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius: 4,
-        borderWidth: 1,
+        borderWidth: 2,
         borderStyle: 'solid',
-        borderColor: '#28A745'
+        borderColor: '#AD4E5C',   
     },
     textButton: {
-        color: '#fff'
+        color: '#AD60A9',
+        fontWeight: 'bold'
     },
     alert: {
         color: 'red',

@@ -41,6 +41,7 @@ class Register extends Component{
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.nickName)}>
                     <Text style={styles.textButton}>Register your meow</Text>    
                 </TouchableOpacity>
+                <Text>Already registered? <br></br> Paw-some, follow me to </Text>
             </View>
         )
     }
@@ -61,17 +62,17 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor:'#F8F2F8',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
-        borderWidth:1,
+        borderWidth:2,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#AD60A9',
     },
     textButton:{
-        color: '#fff'
+        color: '#AD60A9'
     },
     alert: {
         color: 'red',
