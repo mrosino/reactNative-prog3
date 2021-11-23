@@ -32,10 +32,11 @@ class Menu extends Component {
     });
   }
   register(email, pass, nickName) {
-      console.log(nickName);
-    auth.createUserWithEmailAndPassword(email, pass)
+    auth
+      .createUserWithEmailAndPassword(email, pass)
       .then(() => {
-        auth.onAuthStateChanged((user) => {
+        auth
+          .onAuthStateChanged((user) => {
             user.updateProfile({
               createdAt: Date.now(),
               displayName: nickName,
@@ -63,7 +64,6 @@ class Menu extends Component {
         this.setState({
           error: error.message,
         });
-        //armar modal de aviso
       });
   }
   logout() {
@@ -92,6 +92,7 @@ class Menu extends Component {
           </Drawer.Navigator>
         ) : (
           <Drawer.Navigator>
+<<<<<<< Updated upstream
             <Drawer.Screen name = "Home">
                         {props => <Home {...props} />}
                     </Drawer.Screen>
@@ -104,6 +105,23 @@ class Menu extends Component {
                     <Drawer.Screen name = "Miauself">
                         {props => <Profile {...props} />}
                     </Drawer.Screen>
+=======
+            <Drawer.Screen name="Home" component={() => <Home logout={() => this.logout()} />} />
+            <Drawer.Screen name="Buscador" component={() => <Buscador />} />
+            <Drawer.Screen
+              name="New pawmark"
+              component={(drawerProps) => <Upload drawerProps={drawerProps} />}
+            />
+            <Drawer.Screen
+              name="Miauself"
+              component={() => (
+                <Profile
+                  userData={this.state.userData}
+                  logout={() => this.logout()}
+                />
+              )}
+            />
+>>>>>>> Stashed changes
           </Drawer.Navigator>
         )}
       </NavigationContainer>
