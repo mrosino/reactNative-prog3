@@ -32,13 +32,16 @@ class Home extends Component {
   render() {
     return (
       <View>
-      
+      <TouchableOpacity style={styles.close} onPress={() => this.props.logout()}>
+          <Text style={styles.textButton}>Close claw</Text>
+        </TouchableOpacity>
         <Text style={styles.title}> I tawt I taw puddy tat </Text>
         <Image
           style={styles.imageT}
           source={require( '../../assets/tweety.png' )}
           resizeMode="contain"
         />
+
        
         <FlatList
           data={this.state.posts}

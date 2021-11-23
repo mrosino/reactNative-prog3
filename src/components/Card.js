@@ -102,7 +102,7 @@ class Card extends Component {
   render() {
        return (
       <View style={styles.postContainer}>
-        {auth.currentUser.email === this.props.postData.data.owner ? <TouchableOpacity onPress={() => this.deletePost()}><Text  style={styles.sand}>Hide under the sand</Text></TouchableOpacity> : console.log("Permission not granted")}
+        {auth.currentUser.email === this.props.postData.data.owner ? <TouchableOpacity onPress={() => this.deletePost()}><Text  style={styles.sand}>Hide under the sand</Text></TouchableOpacity> : console.log("")}
         <Image
           style={styles.image}
           source={{ uri: this.props.postData.data.image }}
