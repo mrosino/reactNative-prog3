@@ -82,47 +82,32 @@ class Menu extends Component {
       <NavigationContainer>
         {this.state.loggedin === false ? (
           <Drawer.Navigator>
-            <Drawer.Screen
-              name="Log into your CatSpace!"
-              component={() => (
-                <Login
-                  error={this.state.error}
-                  login={(email, pass) => this.login(email, pass)}
-                />
-              )}
-            />
-            <Drawer.Screen
-              name="Register your paw!"
-              component={() => (
-                <Register
-                  error={this.state.error}
-                  register={(email, pass, nickName) =>
-                    this.register(email, pass, nickName)
-                  }
-                />
-              )}
-            />
+            <Drawer.Screen name="Log into your CatSpace!">
+                            {props => <Login {...props} login={(email, password)=>this.login(email, password)} error={this.state.error}/>}
+                        </Drawer.Screen>
+                        <Drawer.Screen name = "Register your paw!">
+                            {props => <Register {...props} register={(email, password,username)=>this.register(email, password,username)} error={this.state.error}/>}
+                        </Drawer.Screen>
+            
           </Drawer.Navigator>
         ) : (
           <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={() => <Home />} />
-            <Drawer.Screen name="Buscador" component={() => <Buscador />} />
-            <Drawer.Screen
-              name="New pawmark"
-              component={(drawerProps) => <Upload drawerProps={drawerProps} />}
-            />
-            <Drawer.Screen
-              name="Miauself"
-              component={() => (
-                <Profile
-                  userData={this.state.userData}
-                  logout={() => this.logout()}
-                />
-              )}
-            />
+            <Drawer.Screen name = "Home">
+                        {props => <Home {...props} />}
+                    </Drawer.Screen>
+            <Drawer.Screen name = "Buscador">
+                                {props => <Buscador {...props}/>}
+                    </Drawer.Screen>
+                    <Drawer.Screen name = "New pawmark">
+                                {props => <Upload {...props}/>}
+                    </Drawer.Screen>
+                    <Drawer.Screen name = "Miauself">
+                        {props => <Profile {...props} />}
+                    </Drawer.Screen>
           </Drawer.Navigator>
         )}
       </NavigationContainer>
+      
     );
   }
 }
