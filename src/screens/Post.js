@@ -9,8 +9,14 @@ class Post extends Component{
         this.state={
             textoPost:'',
             showCamera: true,
-            url:''
+            url:'',
+            loaded: false
         }
+    }
+    componentDidMount(){
+        this.setState({
+            loaded:true
+          });
     }
 
     onSubmit(){
@@ -58,6 +64,7 @@ class Post extends Component{
                         multiline
                         value={this.state.textoPost}    
                         />
+                         {this.state.loaded == false ?<ActivityIndicator color={"black"} size={"large"} /> : <React.Fragment></React.Fragment>}
                     <TouchableOpacity style={styles.button} onPress={()=>this.onSubmit()}>
                         <Text style={styles.textButton}>Postear</Text>    
                     </TouchableOpacity>
@@ -80,20 +87,20 @@ const styles = StyleSheet.create({
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#ccc',
+        borderColor: '#BC6760',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
+        
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#BC6760'
     },
     textButton:{
         color: '#fff'

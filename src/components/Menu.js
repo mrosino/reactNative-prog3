@@ -15,17 +15,18 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false,
+      loadedin: false,
       userData: {},
       nickName: "",
       error: "",
+
     };
   }
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
-          loggedin: true,
+          loadedin: true,
           userData: user,
         });
       }
@@ -56,7 +57,7 @@ class Menu extends Component {
       .then((user) => {
         console.log("Login Ok");
         this.setState({
-          loggedin: true,
+          loadedin: true,
           userData: user,
         });
       })
@@ -71,7 +72,7 @@ class Menu extends Component {
       .signOut()
       .then(
         this.setState({
-          loggedin: false,
+          loadedin: false,
         })
       )
       .catch((e) => console.log(e));
@@ -80,7 +81,7 @@ class Menu extends Component {
   render() {
     return (
       <NavigationContainer>
-        {this.state.loggedin === false ? (
+        {this.state.loadedin === false ? (
           <Drawer.Navigator>
             <Drawer.Screen name="Log into your CatSpace!">
                             {props => <Login {...props} login={(email, password)=>this.login(email, password)} error={this.state.error}/>}
@@ -92,20 +93,6 @@ class Menu extends Component {
           </Drawer.Navigator>
         ) : (
           <Drawer.Navigator>
-<<<<<<< Updated upstream
-            <Drawer.Screen name = "Home">
-                        {props => <Home {...props} />}
-                    </Drawer.Screen>
-            <Drawer.Screen name = "Buscador">
-                                {props => <Buscador {...props}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name = "New pawmark">
-                                {props => <Upload {...props}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name = "Miauself">
-                        {props => <Profile {...props} />}
-                    </Drawer.Screen>
-=======
             <Drawer.Screen name="Home" component={() => <Home logout={() => this.logout()} />} />
             <Drawer.Screen name="Buscador" component={() => <Buscador />} />
             <Drawer.Screen
@@ -121,7 +108,6 @@ class Menu extends Component {
                 />
               )}
             />
->>>>>>> Stashed changes
           </Drawer.Navigator>
         )}
       </NavigationContainer>

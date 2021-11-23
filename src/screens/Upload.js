@@ -10,7 +10,8 @@ class Upload extends Component{
         this.state={
             textoPost:'',
             showCamera: true,
-            url: ''
+            url: '',
+            
         }
     }
 

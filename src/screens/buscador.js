@@ -11,7 +11,8 @@ class buscador extends Component{
         super(props);
         this.state = {
             loading: false,
-            posts: []
+            posts: [],
+            loaded: false,
         }
     }
     
@@ -49,12 +50,11 @@ class buscador extends Component{
                 </View>
                
                 {this.state.loading ?
-                <ActivityIndicator color={"green"} size={"large"} /> :
+                <ActivityIndicator color={"black"} size={"large"} /> :
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(card) => card.id.toString()}
-                        renderItem={({item}) => <Card postData={item} /> }
-                        
+                        renderItem={({item}) => <Card postData={item} /> }                        
                         renderItem={({item}) => <Card style={styles.post} postData={item} /> }
                     />       
                 }

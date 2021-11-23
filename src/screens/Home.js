@@ -8,7 +8,7 @@ class Home extends Component {
     super();
     this.state = {
       posts: [],
-      loader:true,
+      loaded: false,
     };
   }
   componentDidMount() {
@@ -26,7 +26,7 @@ class Home extends Component {
         console.log(posteos);
         this.setState({
           posts: posteos,
-          loader:false
+          loaded:true
         });
       });
    
@@ -35,16 +35,14 @@ class Home extends Component {
     return (
       <View>
       
-        <Text style={styles.title}> I tawt I taw puddy tat </Text>
-        <Image
-          style={styles.imageT}
-          source={require( '../../assets/tweety.png' )}
-          resizeMode="contain"
-        />
-       {this.state.loader ?
-       <ActivityIndicator />
-      :
-      <React.Fragment></React.Fragment>}
+     
+       
+        {this.state.loaded == false ?<ActivityIndicator color={"black"} size={"large"} /> :
+         <View> <Text style={styles.title}> I tawt I taw puddy tat </Text> 
+        <Image style={styles.imageT} source={require( '../../assets/tweety.png' )}  resizeMode="contain"/> 
+        </View>
+        }
+       
         <FlatList
           data={this.state.posts}
           keyExtractor={(card) => card.id.toString()}
@@ -77,5 +75,6 @@ const styles = StyleSheet.create({
     height: 150,
     marginEnd: 40,
   },
+  
 });
 export default Home;
