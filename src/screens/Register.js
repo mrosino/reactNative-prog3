@@ -5,7 +5,7 @@ class Register extends Component{
         super(props)
         this.state={
             email:'',
-            userName:'',
+            nickName:'',
             password:'',
             error: "",
         }
@@ -22,7 +22,7 @@ class Register extends Component{
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({userName: text})}
+                    onChangeText={(text)=>this.setState({nickName: text})}
                     placeholder='catname'
                     keyboardType='default'/>
                 <TextInput
@@ -38,7 +38,7 @@ class Register extends Component{
                             :
                             <React.Fragment></React.Fragment>
                     }
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.userName)}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.nickName)}>
                     <Text style={styles.textButton}>Register your meow</Text>    
                 </TouchableOpacity>
             </View>

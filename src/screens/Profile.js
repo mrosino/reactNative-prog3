@@ -7,7 +7,7 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      name: auth.currentUser.nickname,
+      name: auth.currentUser.nickName,
       email: auth.currentUser.email,
       fecha: "",
       userPosts: "",
@@ -42,6 +42,8 @@ class Profile extends Component {
       <View>
         <Text style={styles.title}>Miau-Space </Text>
         <View style={styles.information}>
+        
+        <Text> Cat-name: {this.state.nickName} </Text>
           <Text> Cat-mail: {this.state.email} </Text>
           <Text> Last log: {auth.currentUser.metadata.lastSignInTime}</Text>
           <Text> Paw-amount: {this.state.userPosts.length}</Text>
