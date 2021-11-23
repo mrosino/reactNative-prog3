@@ -39,8 +39,6 @@ class Card extends Component {
         likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
       })
       .then(() => {
-        console.log("likeado...");
-
         this.setState({
           likes: this.props.postData.data.likes.length,
           myLike: true,
@@ -58,9 +56,7 @@ class Card extends Component {
         ),
       })
       .then(() => {
-        console.log("quitando like...");
-
-        this.setState({
+               this.setState({
           likes: this.props.postData.data.likes.length,
           myLike: false,
         });
@@ -100,11 +96,13 @@ class Card extends Component {
       })
       .catch((e) => console.log(e));
   }
-
+ deletePost(){
+    db.collection('Posts').doc(this.props.postData.id).delete()
+}
   render() {
-    console.log(this.props.postData);
-    return (
+       return (
       <View style={styles.postContainer}>
+        {auth.currentUser.email === this.props.postData.data.owner ? <TouchableOpacity onPress={() => this.deletePost()}><Text  style={styles.sand}>Hide under the sand</Text></TouchableOpacity> : console.log("Permission not granted")}
         <Image
           style={styles.image}
           source={{ uri: this.props.postData.data.image }}
@@ -172,7 +170,10 @@ class Card extends Component {
         ) : (
           <Text></Text>
         )}
+        :
       </View>
+      
+
     );
   }
 }
@@ -245,6 +246,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: 4,
     borderStyle: "solid",
+  },
+  sand: {
+    backgroundColor: "#B14D3A",
+    margin: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    textAlign: "center",
+    borderRadius: 4,
+    borderStyle: "solid",
+    alignSelf: "flex-end",
+    marginTop: 4,
   },
   info: {
     backgroundColor: "#F2E3E4",

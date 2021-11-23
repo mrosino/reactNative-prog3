@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-//Aquí importo la configuración del auth que me ofrece firebase
 import { auth, db } from '../firebase/config';
 import { TextInput, ActivityIndicator, FlatList, View, StyleSheet } from 'react-native';
 import Card from '../components/Card'
@@ -87,7 +85,6 @@ const styles = StyleSheet.create({
     title: { 
         fontSize: 20,
         fontWeight: "bold",
-        textDecoration: "underline",
         textAlign: "center",
       },
 
