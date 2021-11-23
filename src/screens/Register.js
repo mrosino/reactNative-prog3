@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+
 class Register extends Component{
     constructor(props){
         super(props)
@@ -7,41 +8,58 @@ class Register extends Component{
             email:'',
             nickName:'',
             password:'',
-            error: "",
+            error: " ",
+        }
+    }
+    handleRegister = () =>{
+        const { register} = this.props;
+        const { email, nickName, password} =this.state;
+
+        register (email, nickName, password)
+    }
+    
+    handleInputChange = (key) =>{
+        return (value) => {
+            this.setState({ [key]: value})
         }
     }
  
     render(){
+        const {error }= this.props;
+        const { email, nickName, password} = this.state;
+        const isButtonDisabled = !email || !nickName || !password;
+
         return(
             <View style={styles.formContainer}>
                 <Text>Register</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({email: text})}
+                    onChangeText={this.handleInputChange('email')}
                     placeholder='Type your cat-mail'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({nickName: text})}
+                    onChangeText={this.handleInputChange('nickName')}
                     placeholder='catname'
                     keyboardType='default'/>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({password: text})}
+                    onChangeText={this.handleInputChange('password')}
                     placeholder='catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                         {
-                        this.props.error ?
-                            <Text style={styles.alert}>{this.props.error}</Text>
-                            :
-                            <React.Fragment></React.Fragment>
-                    }
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password, this.state.nickName)}>
+                    
+                <TouchableOpacity 
+                style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled}
+                onPress={this.handleLogin}
+                disabled={isButtonDisabled}
+                >
                     <Text style={styles.textButton}>Register your meow</Text>    
                 </TouchableOpacity>
-                <Text>Already registered? <br></br> Paw-some, follow me to </Text>
+                <Text>Already registered? <br></br> Paw-some, follow me to 
+                {/* {error && <Text style={styles.alert}>{error} */}
+                </Text>
             </View>
         )
     }
@@ -61,15 +79,27 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical:10,
     },
-    button:{
-        backgroundColor:'#F8F2F8',
+    buttonDisabled: {
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 2,
+        borderStyle: 'solid',
         paddingHorizontal: 10,
         paddingVertical: 6,
+        borderColor: 'orange',
+        backgroundColor: 'red', 
+        cursor: 'not-allowed'
+    },
+    buttonEnabled: {
         textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:2,
+        borderRadius: 4,
+        borderWidth: 2,
         borderStyle: 'solid',
-        borderColor: '#AD60A9',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderColor: '#AD4E5C', 
+        backgroundColor: '#F8F2F8',
+        cursor: 'pointer'
     },
     textButton:{
         color: '#AD60A9'

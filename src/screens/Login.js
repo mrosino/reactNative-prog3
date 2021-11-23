@@ -37,7 +37,7 @@ class Login extends Component {
                     onChangeText={this.handleInputChange('email')}
                     placeholder='Type your email'
                     keyboardType='email-address' 
-                    autoComplete="off"
+  
                 />
                 <TextInput
                     style={styles.text}
@@ -45,7 +45,7 @@ class Login extends Component {
                     placeholder='Type your catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
-                    autoComplete="off"
+               
                 />
                 <TouchableOpacity 
                     style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled} 
