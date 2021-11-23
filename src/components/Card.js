@@ -170,7 +170,7 @@ class Card extends Component {
         ) : (
           <Text></Text>
         )}
-        :
+        
       </View>
       
 
