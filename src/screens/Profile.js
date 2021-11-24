@@ -50,7 +50,7 @@ class Profile extends Component {
 
     return (
       <>
-        <Text>{`Pawmark amount: ${posts.length}`}</Text>
+        <Text style={styles.info}>{`Pawmark amount: ${posts.length}`}</Text>
         <View style={styles.container}>
           <FlatList
             data={posts}
@@ -74,9 +74,9 @@ class Profile extends Component {
           </TouchableOpacity>
           <Text style={styles.title}>Miau-Space </Text>
           <View style={styles.information}>
-            <Text>{`Cat-name: ${name}`}</Text>
-            <Text>{`Cat-mail: ${email}`}</Text>
-            <Text>{`Last log: ${auth.currentUser.metadata.lastSignInTime}`}</Text>
+            <Text style={styles.info}>{`Cat-name: ${name}`}</Text>
+            <Text style={styles.info}>{`Cat-mail: ${email}`}</Text>
+            <Text style={styles.info}>{`Last log: ${auth.currentUser.metadata.lastSignInTime}`}</Text>
             {this.renderPosts()}
           </View>
         </View>
@@ -101,23 +101,32 @@ const styles = StyleSheet.create({
   textButton: {
     textAlign: "center",
     backgroundColor: "#AD4E5C",
-    color: "#FFF",
+    color: "black",
     padding: 5,
     borderRadius: 4,
     margin: 5,
     alignSelf: "center",
   },
   information: {
+    backgroundColor: "#F2E3E4",
+    paddingRight: 10,
     paddingVertical: 20,
-    marginHorizontal: "10%",
+    marginHorizontal: "15%",
     borderColor: 'black',
     borderRadius: 4,
     borderWidth: 2,  
     alignSelf: 'center',
     padding: 3, 
     color: "#BC6760",
-    fontWeight:'bolder',
+    fontWeight:'bold',
     flex: 1
+  },
+  info: {
+    backgroundColor: "#F2E3E4",   
+    paddingLeft: 8, 
+    color: "black",
+    fontWeight:'bold',
+    textAlign: 'stretch'
   },
   close:{
     alignSelf: 'flex-end',

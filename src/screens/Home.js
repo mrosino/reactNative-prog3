@@ -71,7 +71,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   title: { 
     fontSize: 20,
@@ -91,8 +91,9 @@ const styles = StyleSheet.create({
     height: 250,
   },
   imageT: {
-    height: 150,
+    height: 130,
     marginEnd: 40,
+    position: 'relative'
   },
 });
 

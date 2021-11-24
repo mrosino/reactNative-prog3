@@ -109,7 +109,7 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props.postData.data.comments);
+    console.log(this.props.postData.data.comments.length);
     return (
       <View style={styles.postContainer}>
         {auth.currentUser.email === this.props.postData.data.owner ? (
@@ -126,6 +126,7 @@ class Card extends Component {
         />
 
         <Text style={styles.info}>
+          {console.log(this.props.postData.data.author)}
           {this.props.postData.data.author} said: "{this.props.postData.data.textoPost}" </Text>
         <Text style={styles.info}>{this.state.likes} paws up </Text>
         <View style={styles.textpost}>
@@ -139,7 +140,7 @@ class Card extends Component {
             </TouchableOpacity>
           )}
           <TouchableOpacity onPress={() => this.showModal()}>
-            <Text style={styles.postbutton}> InteraCations</Text>
+            <Text style={styles.postbutton}> {this.props.postData.data.comments.length} InteraCations</Text>
           </TouchableOpacity>
         </View>
         {/* {this.props.postData.data.comments.length} */}
@@ -161,8 +162,8 @@ class Card extends Component {
                 data={this.props.postData.data.comments}
                 keyExtractor={(post) => post.createdAt.toString()}
                 renderItem={({ item }) => (
-                  <Text>
-                    {item.author}: {item.commentText}
+                  <Text style={styles.com} >
+                    {item.author} said: "{item.commentText}"
                   </Text>
                 )}
               />
@@ -172,8 +173,9 @@ class Card extends Component {
 
             <View>
               <TextInput
+              style={styles.box}
                 keyboardType="defualt"
-                placeholder="Send love"
+                placeholder="Type your reaction"
                 onChangeText={(text) => {
                   this.setState({ comment: text });
                 }}
@@ -274,6 +276,15 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginTop: 4,
   },
+  box: {
+    padding: 15,
+    alignSelf: 'center',
+    margin: 2,
+    borderRadius: 4,
+    borderStyle: "solid",
+    borderColor:'#B14D3A',
+    borderWidth: 3,
+  },
   info: {
     backgroundColor: "#F2E3E4",
     margin: 2,
@@ -289,6 +300,13 @@ const styles = StyleSheet.create({
     fontWeight:'bolder',
     alignSelf: 'center',
   },
+  com:{
+    color: "#AD4E5C",
+    padding: 1,
+    fontSize: 10,
+    fontWeight:'bolder',
+    alignSelf: "stretch"
+    },
 });
 
 export default Card;

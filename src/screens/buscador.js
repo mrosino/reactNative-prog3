@@ -46,7 +46,7 @@ class Buscador extends Component {
         
         if (!loading) {
             if (!posts.length && !!search) {
-                return <>{`No hay resultados que concuerden con la busqueda ${search}`}</>;
+                return <>{`No paws marked by "${search}"`}</>;
             }
 
             if (!posts.length && !search) {
