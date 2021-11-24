@@ -15,13 +15,13 @@ class Buscador extends Component {
     }
 
     fetchPosts = (search) => {
-        if (!search.trim()) {
-            this.setState({ loading: false });
+        if (!search) {
+            this.setState({ loading: false, posts: [] });
             return;
         }
 
         db.collection('Posts').where('owner', '==', search).onSnapshot(docs => {
-            let posts = [];
+            const posts = [];
             docs.forEach(doc => {
                 posts.push({
                     id:doc.id,
@@ -35,7 +35,8 @@ class Buscador extends Component {
         })
     }
 
-    handleSearchChange = (search) => {
+    handleSearchChange = (value) => {
+        const search = value.trim();
         this.setState({ search, loading: true });
         this.fetchPosts(search);
     }
