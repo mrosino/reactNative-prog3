@@ -51,6 +51,12 @@ class Login extends Component {
                     <Text style={styles.textButton}>Fur-ward</Text>
                 </TouchableOpacity>
                 {error && <Text style={styles.alert}>{error}</Text>}
+
+                 
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Register your paw!')}>
+                <Text>Haven't registered your paw? <br></br> Paw-some, follow me to Register</Text>
+               
+                </TouchableOpacity>
             </View>
         )
     }
@@ -78,23 +84,25 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         paddingHorizontal: 10,
         paddingVertical: 6,
-        borderColor: 'orange',
-        backgroundColor: 'red', 
-        cursor: 'not-allowed'
+        borderColor: 'darkGrey',
+        backgroundColor: 'grey', 
+        cursor: 'not-allowed',
+        fontWeight: "bold",
     },
     buttonEnabled: {
-        textAlign: 'center',
-        borderRadius: 4,
-        borderWidth: 2,
-        borderStyle: 'solid',
-        paddingHorizontal: 10,
+        textAlign: "center",
+        backgroundColor: "#CC8E93",
+        margin: 2,
+        borderStyle: "solid",
+        fontWeight: "bold",
         paddingVertical: 6,
-        borderColor: '#AD4E5C', 
-        backgroundColor: '#F8F2F8',
+        paddingHorizontal: 10,        
+        borderRadius: 4,        
         cursor: 'pointer'
-    },
+      },
+   
     textButton: {
-        color: '#AD60A9',
+        color: 'black',
         fontWeight: 'bold'
     },
     alert: {
@@ -103,6 +111,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 10,
     },
+   
 });
 
 export default Login;

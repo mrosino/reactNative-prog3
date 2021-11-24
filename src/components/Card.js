@@ -248,6 +248,7 @@ const styles = StyleSheet.create({
   postbutton2: {
     backgroundColor: "#CC8E93",
     margin: 2,
+    fontWeight: "bold",
     paddingVertical: 6,
     paddingHorizontal: 10,
     textAlign: "center",

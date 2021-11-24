@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   accept: {
     marginTop: 10,
     width: 100,
-    backgroundColor: "#A550A0",
+    backgroundColor: "#CC8E93",
     borderRadius: 50,
     alignItems: "center",
     padding: 4,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   shoot: {
     marginTop: 10,
     width: 120,
-    backgroundColor: "#AD4E5C",
+    backgroundColor: "#CC8E93",
     borderRadius: 50,
     alignItems: "center",
     padding: 4,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   reject: {
       marginTop: 10,
-    backgroundColor: "#B44C18",
+    backgroundColor: "#CC8E93",
     borderRadius: 50,
     alignItems: "center",
     padding: 6,
@@ -157,6 +157,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bolder', 
     fontsize: 12,
   },
+ 
 });
-
-//lo mio
