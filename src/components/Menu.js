@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
@@ -94,7 +93,7 @@ class Menu extends Component {
           </Drawer.Navigator>
         ) : (
           <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={() => <Home logout={() => this.logout()} />} />
+            <Drawer.Screen name="Home" component={() => <Home  logout={() => this.logout()} />} />
             <Drawer.Screen name="Buscador" component={() => <Buscador />} />
             <Drawer.Screen
               name="New pawmark"
