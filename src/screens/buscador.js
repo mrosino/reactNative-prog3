@@ -54,12 +54,14 @@ class Buscador extends Component {
             }
 
             return (
-                <FlatList
-                    data={posts}
-                    keyExtractor={(card) => card.id.toString()}
-                    renderItem={({item}) => <Card postData={item} /> }                        
-                    renderItem={({item}) => <Card style={styles.post} postData={item} /> }
-                />
+                <View style={{ flex: 1 }}>
+                    <FlatList
+                        data={posts}
+                        keyExtractor={(card) => card.id.toString()}
+                        renderItem={({item}) => <Card postData={item} /> }                        
+                        renderItem={({item}) => <Card style={styles.post} postData={item} /> }
+                    />
+                </View>
             );
         }
 
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#D9ABAE",
         paddingVertical: 10,
         marginVertical: 50,
-        width: "100%",
+        flex: 1
     },
     title: { 
         fontSize: 20,

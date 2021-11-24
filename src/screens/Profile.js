@@ -51,11 +51,13 @@ class Profile extends Component {
     return (
       <>
         <Text>{`Pawmark amount: ${posts.length}`}</Text>
-        <FlatList
-          data={posts}
-          keyExtractor={(card) => card.id}
-          renderItem={({ item }) => <Card postData={item} onPostDelete={this.onPostDelete} />}
-        />
+        <View style={styles.container}>
+          <FlatList
+            data={posts}
+            keyExtractor={(card) => card.id}
+            renderItem={({ item }) => <Card postData={item} onPostDelete={this.onPostDelete} />}
+          />
+        </View>
       </>
     )   
   }
@@ -66,7 +68,7 @@ class Profile extends Component {
 
     if (!loading) {
       return (
-        <View>
+        <View style={styles.container}>
           <TouchableOpacity style={styles.close} onPress={logout}>
             <Text style={styles.textButton}>Close claw</Text>
           </TouchableOpacity>
@@ -85,6 +87,9 @@ class Profile extends Component {
   }
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
@@ -112,6 +117,7 @@ const styles = StyleSheet.create({
     padding: 3, 
     color: "#BC6760",
     fontWeight:'bolder',
+    flex: 1
   },
   close:{
     alignSelf: 'flex-end',

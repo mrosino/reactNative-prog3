@@ -3,7 +3,6 @@ import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import { auth, db } from "../firebase/config";
 import MyCamera from "../components/MyCamera";
 
-
 class Upload extends Component{
     constructor(props){
         super(props)
@@ -40,8 +39,10 @@ class Upload extends Component{
         })
         .then(()=>{
             this.setState({
+                showCamera: true,
                 textoPost: '',
-                image:''
+                image: '',
+                url: ''
             })
           
             this.props.drawerProps.navigation.navigate('Home');
