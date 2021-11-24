@@ -54,7 +54,7 @@ class Buscador extends Component {
             }
 
             return (
-                <View style={{ flex: 1 }}>
+                <View style={styles.buscador}>
                     <FlatList
                         data={posts}
                         keyExtractor={(card) => card.id.toString()}

@@ -8,7 +8,6 @@ import {
   Modal,
   TextInput,
   FlatList,
-  requireNativeComponent,
 } from "react-native";
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
