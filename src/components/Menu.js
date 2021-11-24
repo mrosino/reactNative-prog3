@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Profile from "../screens/Profile";
 import Upload from "../screens/Upload";
 import Buscador from "../screens/Buscador";
-
-import { auth, db } from "../firebase/config";
+import { auth } from "../firebase/config";
 
 const Drawer = createDrawerNavigator();
 class Menu extends Component {
@@ -73,6 +73,7 @@ class Menu extends Component {
       .then(
         this.setState({
           loadedin: false,
+          error: ''
         })
       )
       .catch((e) => console.log(e));

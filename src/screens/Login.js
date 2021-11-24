@@ -7,14 +7,12 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            error: '',
         }
     }
 
     handleLogin = () => {
         const { login } = this.props;
         const { email, password } = this.state;  
-
         login(email, password)
     }
 
@@ -37,7 +35,6 @@ class Login extends Component {
                     onChangeText={this.handleInputChange('email')}
                     placeholder='Type your email'
                     keyboardType='email-address' 
-  
                 />
                 <TextInput
                     style={styles.text}
@@ -45,7 +42,6 @@ class Login extends Component {
                     placeholder='Type your catsignal'
                     keyboardType='email-address'
                     secureTextEntry={true}
-               
                 />
                 <TouchableOpacity 
                     style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled} 
