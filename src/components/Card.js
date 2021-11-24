@@ -56,7 +56,7 @@ class Card extends Component {
         ),
       })
       .then(() => {
-               this.setState({
+        this.setState({
           likes: this.props.postData.data.likes.length,
           myLike: false,
         });
@@ -97,27 +97,35 @@ class Card extends Component {
       .catch((e) => console.log(e));
   }
 
-  deletePost(){
+  deletePost() {
     const { onPostDelete, postData } = this.props;
     const postId = postData.id;
-    db.collection('Posts').doc(postId).delete()
+    db.collection("Posts").doc(postId).delete();
     if (onPostDelete) {
       onPostDelete(postId);
     }
   }
 
   render() {
-       return (
+    console.log(this.props.postData.data.textoPost);
+    return (
       <View style={styles.postContainer}>
-        {auth.currentUser.email === this.props.postData.data.owner ? <TouchableOpacity onPress={() => this.deletePost()}><Text  style={styles.sand}>Hide under the sand</Text></TouchableOpacity> : console.log("Permission not granted")}
+        {auth.currentUser.email === this.props.postData.data.owner ? (
+          <TouchableOpacity onPress={() => this.deletePost()}>
+            <Text style={styles.sand}>Hide under the sand</Text>
+          </TouchableOpacity>
+        ) : (
+          console.log("Permission not granted")
+        )}
         <Image
           style={styles.image}
           source={{ uri: this.props.postData.data.image }}
           resizeMode="contain"
         />
 
-        <Text style={styles.info}>Posted by {this.props.postData.data.owner}</Text>
-        <Text style={styles.info}>Liked by {this.state.likes} kittens</Text>
+        <Text style={styles.info}>
+          {this.props.postData.data.author} said: "{this.props.postData.data.textoPost}" </Text>
+        <Text style={styles.info}>{this.state.likes} paws up </Text>
         <View style={styles.textpost}>
           {this.state.myLike ? (
             <TouchableOpacity onPress={() => this.unlike()}>
@@ -150,7 +158,6 @@ class Card extends Component {
                 keyExtractor={(post) => post.createdAt.toString()}
                 renderItem={({ item }) => (
                   <Text>
-                    {" "}
                     {item.author}: {item.commentText}
                   </Text>
                 )}
@@ -177,10 +184,7 @@ class Card extends Component {
         ) : (
           <Text></Text>
         )}
-        
       </View>
-      
-
     );
   }
 }

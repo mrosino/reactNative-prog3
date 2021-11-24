@@ -18,9 +18,8 @@ class Register extends Component {
   }
 
   handleRegister = () => {
-    const { register } = this.props;
     const { email, nickName, password } = this.state;
-    register(email, nickName, password);
+    this.props.register(email, password, nickName) ;
   };
 
   handleInputChange = (key) => {

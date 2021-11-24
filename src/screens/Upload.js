@@ -31,6 +31,7 @@ class Upload extends Component{
     onSubmit(){
         db.collection('Posts').add({
             owner: auth.currentUser.email,
+            author: auth.currentUser.displayName,
             createdAt: Date.now(),
             textoPost: this.state.textoPost,
             image: this.state.url,
