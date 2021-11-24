@@ -50,7 +50,7 @@ class Buscador extends Component {
             }
 
             if (!posts.length && !search) {
-                return <>Realice una busqueda para filtrar resultados</>;
+                return <>Escriba su búsqueda</>;
             }
 
             return (
