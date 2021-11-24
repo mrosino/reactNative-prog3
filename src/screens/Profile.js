@@ -1,83 +1,87 @@
 import React, { Component } from "react";
-import { Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput, } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View, StyleSheet, FlatList } from "react-native";
+
 import { auth, db } from "../firebase/config";
 import Card from "../components/Card";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      loading: false,
       name: auth.currentUser.displayName,
       email: auth.currentUser.email,
       fecha: "",
-      userPosts: "",
-
+      posts: [],
     };
-
   }
-
-
 
   componentDidMount() {
-    //Traer datos de la db
-    console.log(auth.currentUser);
+    this.setState({ loading: true });
+    this.fetchUserPosts();
+  }
+
+  onPostDelete = (id) => {
+    const { posts } = this.state;
+    this.setState({ posts: posts.filter(p => p.id !== id )})
+  }
+
+  fetchUserPosts = () => {
     db.collection("Posts").where("owner", "==", auth.currentUser.email).orderBy("createdAt", "desc").limit(10)
       .onSnapshot((docs) => {
-        let info = [];
-        docs.forEach((doc) => {
-          info.push({
-            id: doc.id,
-            data: doc.data(),
+          const posts = [];
+          docs.forEach((doc) => {
+            posts.push({
+              id: doc.id,
+              data: doc.data(),
+            });
           });
-        });
-        console.log(info);
-        this.setState({
-          userPosts: info,
-        });
+          this.setState({ posts });
       });
-
+      this.setState({ loading: false });
   }
-  render() {
-    console.log(auth.currentUser);
-    return (
-<View>
-  {this.state.userPosts > 0 ? <View>  <TouchableOpacity style={styles.close} onPress={() => this.props.logout()}>
-          <Text style={styles.textButton}>Close claw</Text>
-        </TouchableOpacity>
-        <Text style={styles.title}>Miau-Space </Text>
-        <View style={styles.information}>
-        
-        <Text> Cat-name: {this.state.name} </Text>
-          <Text> Cat-mail: {this.state.email} </Text>
-          <Text> Last log: {auth.currentUser.metadata.lastSignInTime}</Text>
-          <Text> Pawmark amount: {this.state.userPosts.length}</Text>
-        </View>
 
+  renderPosts = () => {
+    const { posts } = this.state; 
 
-
-        <FlatList
-          data={this.state.userPosts}
-          keyExtractor={(card) => card.id}
-          renderItem={({ item }) => <Card postData={item} />}
-        /> </View> : <View>   <TouchableOpacity style={styles.close} onPress={() => this.props.logout()}>
-        <Text style={styles.textButton}>Close claw</Text>
-      </TouchableOpacity>
-      <Text style={styles.title}>Miau-Space </Text>
-      <View style={styles.information}>
-      
-
-      <Text style={styles.info}> Cat-name: {this.state.name} </Text>
-        <Text style={styles.info}> Cat-mail: {this.state.email} </Text>
-        <Text style={styles.info}> Last log: {auth.currentUser.metadata.lastSignInTime}</Text>
-        <Text style={styles.no}> Still no PawMarks</Text>
-      </View> </View>
-
+    if (!posts.length) {
+      return <Text style={styles.no}> Still no PawMarks</Text>;
     }
 
+    return (
+      <>
+        <Text>{`Pawmark amount: ${posts.length}`}</Text>
+        <FlatList
+          data={posts}
+          keyExtractor={(card) => card.id}
+          renderItem={({ item }) => <Card postData={item} onPostDelete={this.onPostDelete} />}
+        />
+      </>
+    )   
+  }
+  
+  render() {
+    const { logout } = this.props;
+    const { loading, name, email } = this.state; 
 
+    if (!loading) {
+      return (
+        <View>
+          <TouchableOpacity style={styles.close} onPress={logout}>
+            <Text style={styles.textButton}>Close claw</Text>
+          </TouchableOpacity>
+          <Text style={styles.title}>Miau-Space </Text>
+          <View style={styles.information}>
+            <Text>{`Cat-name: ${name}`}</Text>
+            <Text>{`Cat-mail: ${email}`}</Text>
+            <Text>{`Last log: ${auth.currentUser.metadata.lastSignInTime}`}</Text>
+            {this.renderPosts()}
+          </View>
+        </View>
+      );
+    }
 
-      </View>
-    );
+    return <ActivityIndicator color={"black"} size={"large"} />;
   }
 }
 const styles = StyleSheet.create({
@@ -85,7 +89,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-
   },
   imagen: {
     height: 250,
@@ -105,7 +108,10 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 4,
     borderWidth: 2,  
-
+    alignSelf: 'center',
+    padding: 3, 
+    color: "#BC6760",
+    fontWeight:'bolder',
   },
   close:{
     alignSelf: 'flex-end',
@@ -117,17 +123,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight:'bolder',
     alignSelf: 'center',
-    
-
   },
-  info:{
-    color: "#BC6760",
-    padding: 3,    
-    fontSize: 22,
-    fontWeight:'bolder',
-    alignSelf: 'center',
-    marginBottom: 30,
-    
-  }
 });
 export default Profile;

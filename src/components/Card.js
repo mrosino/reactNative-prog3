@@ -96,9 +96,16 @@ class Card extends Component {
       })
       .catch((e) => console.log(e));
   }
- deletePost(){
-    db.collection('Posts').doc(this.props.postData.id).delete()
-}
+
+  deletePost(){
+    const { onPostDelete, postData } = this.props;
+    const postId = postData.id;
+    db.collection('Posts').doc(postId).delete()
+    if (onPostDelete) {
+      onPostDelete(postId);
+    }
+  }
+
   render() {
        return (
       <View style={styles.postContainer}>
