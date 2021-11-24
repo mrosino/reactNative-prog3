@@ -156,9 +156,9 @@ class Menu extends Component {
                         <Drawer.Screen name = "Buscador">
                         {props => <Buscador {...props} />}
                         </Drawer.Screen>
-                        <Drawer.Screen name = "New pawmark">
-                            {drawerProps => <Upload {...drawerProps} />}
-                        </Drawer.Screen>
+                        <Drawer.Screen name="New pawmark"
+              component={(drawerProps) => <Upload drawerProps={drawerProps} />} />
+                       
                         <Drawer.Screen name = "Miauself">
                             {props => <Profile {...props} userData={this.state.userData} logout={() => this.logout()}/>}
                         </Drawer.Screen>

@@ -77,7 +77,7 @@ class Card extends Component {
 
   publicarComentario() {
     let oneComment = {
-      author: auth.currentUser.email,
+      author: auth.currentUser.displayName,
       createdAt: Date.now(),
       commentText: this.state.comment,
     };
@@ -109,6 +109,7 @@ class Card extends Component {
   }
 
   render() {
+    console.log(this.props.postData.data.comments);
     return (
       <View style={styles.postContainer}>
         {auth.currentUser.email === this.props.postData.data.owner ? (
@@ -138,9 +139,10 @@ class Card extends Component {
             </TouchableOpacity>
           )}
           <TouchableOpacity onPress={() => this.showModal()}>
-            <Text style={styles.postbutton}>InteraCations</Text>
+            <Text style={styles.postbutton}> InteraCations</Text>
           </TouchableOpacity>
         </View>
+        {/* {this.props.postData.data.comments.length} */}
 
         {this.state.showModal ? (
           <Modal
@@ -148,6 +150,7 @@ class Card extends Component {
             animationType="fade"
             transparent={false}
             visible={this.state.showModal}
+            resizeMode="contain"
           >
             <TouchableOpacity onPress={() => this.closeModal()}>
               <Text style={styles.closeButton}>X</Text>
@@ -164,7 +167,7 @@ class Card extends Component {
                 )}
               />
             ) : (
-              <Text></Text>
+              <Text style={styles.no}>No impressions on your paw :( </Text>
             )}
 
             <View>
@@ -177,9 +180,10 @@ class Card extends Component {
                 multiline
                 value={this.state.comment}
               />
-              <TouchableOpacity onPress={() => this.publicarComentario()}>
-                <Text>Send</Text>
-              </TouchableOpacity>
+              {this.state.comment.length > 1 ? <TouchableOpacity  style={styles.postContainer} onPress={() => this.publicarComentario()}>
+                <Text style={styles.postbutton}>Send</Text> 
+              </TouchableOpacity> : <Text style={styles.postbutton}> Write a reaction to your mate </Text>}
+              
             </View>
           </Modal>
         ) : (
@@ -205,9 +209,8 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    width: "80%",
     borderRadius: 25,
-    padding: 10,
+    padding: 100,
     alignSelf: "center",
     marginVertical: 10,
     boxShadow: "rgb(204 204 204) 0px 0px 12px 9px",
@@ -278,6 +281,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bolder",
     borderRadius: 4,
+  },
+  no:{
+    color: "#AD4E5C",
+    padding: 25,
+    fontSize: 32,
+    fontWeight:'bolder',
+    alignSelf: 'center',
   },
 });
 
