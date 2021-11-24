@@ -38,7 +38,6 @@ class Home extends Component {
 
   render() {
     const { loading } = this.state;
-
     if (!loading) {
       return (
         <View> 

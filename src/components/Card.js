@@ -99,10 +99,14 @@ class Card extends Component {
   deletePost() {
     const { onPostDelete, postData } = this.props;
     const postId = postData.id;
-    db.collection("Posts").doc(postId).delete();
-    if (onPostDelete) {
-      onPostDelete(postId);
+    let question = confirm('Are you sure?')
+    if(question){
+      db.collection("Posts").doc(postId).delete();
+      if (onPostDelete) {
+        onPostDelete(postId);
+      }
     }
+   
   }
 
   render() {
