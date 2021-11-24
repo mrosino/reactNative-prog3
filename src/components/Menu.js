@@ -149,21 +149,19 @@ class Menu extends Component {
               showLabel: true,
             }
           }>
-            <Drawer.Screen name="Home" component={() => <Home  logout={() => this.logout()} />} />
-            <Drawer.Screen name="Buscador" component={() => <Buscador />} />
-            <Drawer.Screen
-              name="New pawmark"
-              component={(drawerProps) => <Upload drawerProps={drawerProps} />}
-            />
-            <Drawer.Screen
-              name="Miauself"
-              component={() => (
-                <Profile
-                  userData={this.state.userData}
-                  logout={() => this.logout()}
-                />
-              )}
-            />
+            
+            <Drawer.Screen name = "Home">
+                            {props => <Home {...props} logout={() => this.logout()} />}
+                        </Drawer.Screen>
+                        <Drawer.Screen name = "Buscador">
+                        {props => <Buscador {...props} />}
+                        </Drawer.Screen>
+                        <Drawer.Screen name = "New pawmark">
+                            {drawerProps => <Upload {...drawerProps} />}
+                        </Drawer.Screen>
+                        <Drawer.Screen name = "Miauself">
+                            {props => <Profile {...props} userData={this.state.userData} logout={() => this.logout()}/>}
+                        </Drawer.Screen>
           </Drawer.Navigator>
         )}
       </NavigationContainer>
