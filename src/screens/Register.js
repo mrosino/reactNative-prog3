@@ -70,15 +70,7 @@ class Register extends Component {
         </TouchableOpacity>
         {error && <Text style={styles.alert}>{error}</Text>}
 
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate("Log into your CatSpace!")
-          }
-        >
-          <Text>
-            Already registered? <br></br> Paw-some, follow me to Login
-          </Text>
-        </TouchableOpacity>
+      
       </View>
     );
   }

@@ -53,10 +53,7 @@ class Login extends Component {
                 {error && <Text style={styles.alert}>{error}</Text>}
 
                  
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Register your paw!')}>
-                <Text>Haven't registered your paw? <br></br> Paw-some, follow me to Register</Text>
                
-                </TouchableOpacity>
             </View>
         )
     }

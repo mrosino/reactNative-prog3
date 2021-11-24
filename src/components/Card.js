@@ -89,7 +89,6 @@ class Card extends Component {
         comments: firebase.firestore.FieldValue.arrayUnion(oneComment),
       })
       .then(() => {
-        console.log("Comentario guardado");
         this.setState({
           comment: "",
         });
@@ -107,7 +106,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props.postData.data.textoPost);
     return (
       <View style={styles.postContainer}>
         {auth.currentUser.email === this.props.postData.data.owner ? (

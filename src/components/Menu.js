@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
@@ -9,7 +11,7 @@ import Upload from "../screens/Upload";
 import Buscador from "../screens/Buscador";
 import { auth } from "../firebase/config";
 
-const Drawer = createDrawerNavigator();
+const Drawer = createBottomTabNavigator();
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +56,6 @@ class Menu extends Component {
     auth
       .signInWithEmailAndPassword(email, pass)
       .then((user) => {
-        console.log("Login Ok");
         this.setState({
           loadedin: true,
           userData: user,
@@ -82,7 +83,33 @@ class Menu extends Component {
     return (
       <NavigationContainer>
         {this.state.loadedin === false ? (
-          <Drawer.Navigator>
+          <Drawer.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === "Log into your CatSpace!") {
+                iconName = focused
+                  ? 'log-in'
+                  : 'log-in-outline';
+              } 
+              else if (route.name === 'Register your paw!') {
+                iconName = focused ? 'paw' : 'paw-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#BC6760',
+            tabBarInactiveTintColor: 'gray',
+
+          })}
+          tabBarOptions={
+            {
+              // activeBackgroundColor: "grey",
+              // inactiveBackgroundColor: "#BC6760",
+              showLabel: true,
+            }
+          }
+        >
+
             <Drawer.Screen name="Log into your CatSpace!">
                             {props => <Login {...props} login={(email, password)=>this.login(email, password)} error={this.state.error}/>}
                         </Drawer.Screen>
@@ -92,7 +119,36 @@ class Menu extends Component {
             
           </Drawer.Navigator>
         ) : (
-          <Drawer.Navigator>
+          <Drawer.Navigator  screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home-outline';
+              } 
+              else if (route.name === 'Buscador') {
+                iconName = focused ?  'search' : 'search-outline';
+              }
+              
+              else if (route.name === 'Miauself') {
+                iconName = focused ? 'person' : 'person-outline';
+              }
+              else if (route.name === 'New pawmark') {
+                iconName = focused ? 'paw' : 'paw-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={"#BC6760"} />;
+            },
+
+          })}
+          tabBarOptions={
+            {
+              // activeBackgroundColor: "#BC6760",
+              // inactiveBackgroundColor: "grey",
+              showLabel: true,
+            }
+          }>
             <Drawer.Screen name="Home" component={() => <Home  logout={() => this.logout()} />} />
             <Drawer.Screen name="Buscador" component={() => <Buscador />} />
             <Drawer.Screen
