@@ -44,8 +44,8 @@ class Login extends Component {
                     secureTextEntry={true}
                 />
                 <TouchableOpacity 
-                    style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled} 
-                    onPress={this.handleLogin}
+                    style={isButtonDisabled ? styles.buttonDisabled : styles.buttonEnabled}                     
+                    onPress={this.handleLogin()}
                     disabled={isButtonDisabled}
                 >
                     <Text style={styles.textButton}>Fur-ward</Text>

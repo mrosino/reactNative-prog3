@@ -39,7 +39,8 @@ class Upload extends Component{
         })
         .then(()=>{
             this.setState({
-                textoPost: ''
+                textoPost: '',
+                image:''
             })
           
             this.props.drawerProps.navigation.navigate('Home');
@@ -93,14 +94,14 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor:'#AD4E5C',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#AD4E5C'
     },
     textButton:{
         color: '#fff'
