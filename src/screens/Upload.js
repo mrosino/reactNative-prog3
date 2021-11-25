@@ -113,4 +113,3 @@ const styles = StyleSheet.create({
 })
 export default Upload;
 
-//lo mio

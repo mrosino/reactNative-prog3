@@ -97,8 +97,6 @@ class Menu extends Component {
               tabBarInactiveTintColor: "gray",
             })}
             tabBarOptions={{
-              // activeBackgroundColor: "grey",
-              // inactiveBackgroundColor: "#BC6760",
               showLabel: true,
             }}
           >
