@@ -51,7 +51,7 @@ class Menu extends Component {
   login(email, pass) {
     auth
       .signInWithEmailAndPassword(email, pass)
-      .then((user) => {
+      .then(() => {
         this.setState({
           loggedIn: true,
         });
