@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   },
   imageT: {
     height: 120,
+    
   },
   close:{
     alignSelf: 'flex-end',

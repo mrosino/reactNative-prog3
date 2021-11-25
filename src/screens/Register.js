@@ -20,6 +20,7 @@ class Register extends Component {
   handleRegister = () => {
     const { email,  password, nickName } = this.state;
     this.props.register(email, password, nickName) ;
+    
   };
 
   handleInputChange = (key) => {
@@ -67,8 +68,7 @@ class Register extends Component {
         >
           <Text style={styles.textButton}>Register your meow</Text>
         </TouchableOpacity>
-        {error && <Text style={styles.alert}>{error}</Text>}
-
+        {!error ? <></>: <Text style={styles.alert}>{error}</Text>}
       
       </View>
     );
