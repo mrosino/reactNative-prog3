@@ -111,6 +111,9 @@ class Menu extends Component {
                 />
               )}
             </Drawer.Screen>
+
+                                                                                                       {/* aca ta */}
+
             <Drawer.Screen name="Register your paw!">
               {(props) => (
                 <Register
@@ -123,6 +126,8 @@ class Menu extends Component {
               )}
             </Drawer.Screen>
           </Drawer.Navigator>
+
+
         ) : (
           <Drawer.Navigator
             screenOptions={({ route }) => ({

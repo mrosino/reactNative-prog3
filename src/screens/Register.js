@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     cursor: "not-allowed",
     fontWeight: "bold",
+    color: 'black'
   },
   buttonEnabled: {
     textAlign: "center",
@@ -114,7 +115,8 @@ const styles = StyleSheet.create({
   },
 
   textButton: {
-    color: "#AD60A9",
+    color: "black",
+    fontWeight: 'bold'
   },
   alert: {
     color: "red",
