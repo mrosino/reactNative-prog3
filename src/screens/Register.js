@@ -18,7 +18,7 @@ class Register extends Component {
   }
 
   handleRegister = () => {
-    const { email, nickName, password } = this.state;
+    const { email,  password, nickName } = this.state;
     this.props.register(email, password, nickName) ;
   };
 
@@ -31,8 +31,7 @@ class Register extends Component {
   render() {
     const { error } = this.props;
     const { email, nickName, password } = this.state;
-    const isButtonDisabled =
-      !email.trim() || !nickName.trim() || !password.trim();
+    const isButtonDisabled = !email.trim() || !nickName.trim() || !password.trim();
 
     return (
       <View style={styles.formContainer}>
