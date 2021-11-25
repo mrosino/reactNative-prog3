@@ -15,8 +15,7 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedin: false,
-      userData: {},
+      loggedIn: false,
       nickName: "",
       error: "",
     };
@@ -25,8 +24,7 @@ class Menu extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
-          loadedin: true,
-          userData: user,
+          loggedIn: true,
         });
       }
     });
@@ -55,8 +53,7 @@ class Menu extends Component {
       .signInWithEmailAndPassword(email, pass)
       .then((user) => {
         this.setState({
-          loadedin: true,
-          userData: user,
+          loggedIn: true,
         });
       })
       .catch((error) => {
@@ -66,21 +63,26 @@ class Menu extends Component {
       });
   }
   logout() {
-    auth
+    let question = confirm("Are you sure?");
+    if(question){
+      auth
       .signOut()
       .then(
         this.setState({
-          loadedin: false,
+          loggedIn: false,
           error: "",
         })
       )
       .catch((e) => console.log(e));
+
+    }
+   
   }
 
   render() {
     return (
       <NavigationContainer>
-        {this.state.loadedin === false ? (
+        {this.state.loggedIn === false ? (
           <Drawer.Navigator
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
@@ -160,7 +162,6 @@ class Menu extends Component {
               name="Miauself"
               component={() => (
                 <Profile
-                  userData={this.state.userData}
                   logout={() => this.logout()}
                 />
               )}

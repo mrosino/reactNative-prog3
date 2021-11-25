@@ -12,7 +12,6 @@ export default class MyCamera extends Component {
       permissions: false,
       photo: "",
       showCamera: true,
-      loaded: false,
     };
     this.camera;
   }
@@ -21,7 +20,6 @@ export default class MyCamera extends Component {
     Camera.requestCameraPermissionsAsync().then((response) => {
       this.setState({
         permissions: response.granted,
-        loaded: true,
       });
     });
   }
@@ -29,7 +27,7 @@ export default class MyCamera extends Component {
     this.camera.takePictureAsync().then((photo) => {
       this.setState({
         photo: photo.uri,
-        showCamera: false,
+        showCamera: false
       });
     });
   }
@@ -58,7 +56,7 @@ export default class MyCamera extends Component {
   }
 
   render() {
-    if (!loaded) {
+   
       return (
       
         <View style={styles.viewCamera}>
@@ -99,10 +97,7 @@ export default class MyCamera extends Component {
             <Text> Not allowed</Text>
           )}
         </View>
-      );
-    } else {
-      return <ActivityIndicator color={"black"} size={"large"} />;
-    }
+      )
     
   }
 }

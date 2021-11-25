@@ -223,7 +223,6 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    marginTop: 3000,
     borderRadius: 25,
     padding: 100,
     alignSelf: "center",
