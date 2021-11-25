@@ -98,14 +98,13 @@ class Card extends Component {
   deletePost() {
     const { onPostDelete, postData } = this.props;
     const postId = postData.id;
-    let question = confirm('Are you sure?')
-    if(question){
+    let question = confirm("Are you sure?");
+    if (question) {
       db.collection("Posts").doc(postId).delete();
       if (onPostDelete) {
         onPostDelete(postId);
       }
     }
-   
   }
 
   render() {
@@ -127,7 +126,9 @@ class Card extends Component {
 
         <Text style={styles.info}>
           {console.log(this.props.postData.data.author)}
-          {this.props.postData.data.author} said: "{this.props.postData.data.textoPost}" </Text>
+          {this.props.postData.data.author} said: "
+          {this.props.postData.data.textoPost}"{" "}
+        </Text>
         <Text style={styles.info}>{this.state.likes} paws up </Text>
         <View style={styles.textpost}>
           {this.state.myLike ? (
@@ -140,14 +141,16 @@ class Card extends Component {
             </TouchableOpacity>
           )}
           <TouchableOpacity onPress={() => this.showModal()}>
-            <Text style={styles.postbutton}> {this.props.postData.data.comments.length} InteraCations</Text>
+            <Text style={styles.postbutton}>
+              {" "}
+              {this.props.postData.data.comments.length} InteraCations
+            </Text>
           </TouchableOpacity>
         </View>
-        {/* {this.props.postData.data.comments.length} */}
 
         {this.state.showModal ? (
+          
           <Modal
-            style={styles.modalContainer}
             animationType="fade"
             transparent={false}
             visible={this.state.showModal}
@@ -162,7 +165,7 @@ class Card extends Component {
                 data={this.props.postData.data.comments}
                 keyExtractor={(post) => post.createdAt.toString()}
                 renderItem={({ item }) => (
-                  <Text style={styles.com} >
+                  <Text style={styles.com}>
                     {item.author} said: "{item.commentText}"
                   </Text>
                 )}
@@ -173,7 +176,7 @@ class Card extends Component {
 
             <View>
               <TextInput
-              style={styles.box}
+                style={styles.box}
                 keyboardType="defualt"
                 placeholder="Type your reaction"
                 onChangeText={(text) => {
@@ -182,10 +185,19 @@ class Card extends Component {
                 multiline
                 value={this.state.comment}
               />
-              {this.state.comment.length > 1 ? <TouchableOpacity  style={styles.postContainer} onPress={() => this.publicarComentario()}>
-                <Text style={styles.postbutton}>Send</Text> 
-              </TouchableOpacity> : <Text style={styles.postbutton}> Write a reaction to your mate </Text>}
-              
+              {this.state.comment.length > 1 ? (
+                <TouchableOpacity
+                  style={styles.postContainer}
+                  onPress={() => this.publicarComentario()}
+                >
+                  <Text style={styles.postbutton}>Send</Text>
+                </TouchableOpacity>
+              ) : (
+                <Text style={styles.postbutton}>
+                  {" "}
+                  Write a reaction to your mate{" "}
+                </Text>
+              )}
             </View>
           </Modal>
         ) : (
@@ -211,12 +223,14 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
+    marginTop: 3000,
     borderRadius: 25,
     padding: 100,
     alignSelf: "center",
     marginVertical: 10,
-    boxShadow: "rgb(204 204 204) 0px 0px 12px 9px",
-    backgroundColor: "#F9F1F1",
+    borderWidth: 1,
+    borderColor: "#C68085",
+    borderRadius: 6,
   },
   image: {
     height: 400,
@@ -277,12 +291,13 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   box: {
-    padding: 15,
-    alignSelf: 'center',
+    alignSelf: "center",
     margin: 2,
-    borderRadius: 4,
+    borderRadius: 2,
     borderStyle: "solid",
-    borderColor:'#B14D3A',
+    padding: 5,
+    width: "90%",
+    borderColor: "#B14D3A",
     borderWidth: 3,
   },
   info: {
@@ -293,20 +308,20 @@ const styles = StyleSheet.create({
     fontWeight: "bolder",
     borderRadius: 4,
   },
-  no:{
+  no: {
     color: "#AD4E5C",
     padding: 25,
     fontSize: 32,
-    fontWeight:'bolder',
-    alignSelf: 'center',
+    fontWeight: "bolder",
+    alignSelf: "center",
   },
-  com:{
+  com: {
     color: "#AD4E5C",
     padding: 1,
     fontSize: 10,
-    fontWeight:'bolder',
-    alignSelf: "stretch"
-    },
+    fontWeight: "bolder",
+    alignSelf: "stretch",
+  },
 });
 
 export default Card;

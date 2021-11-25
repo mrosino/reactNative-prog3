@@ -5,7 +5,7 @@ import {
   StyleSheet, 
   FlatList, 
   Image, 
-  ActivityIndicator
+  ActivityIndicator, TouchableOpacity
 } from "react-native";
 
 import { db } from "../firebase/config";
@@ -48,6 +48,9 @@ class Home extends Component {
     if (!loading) {
       return (
         <View style={styles.container}> 
+         <TouchableOpacity style={styles.close} onPress={this.props.logout}>
+            <Text style={styles.textButton}>Close claw</Text>
+          </TouchableOpacity>
           <Text style={styles.title}> I tawt I taw puddy tat </Text> 
           <Image 
             style={styles.imageT} 
@@ -91,9 +94,11 @@ const styles = StyleSheet.create({
     height: 250,
   },
   imageT: {
-    height: 130,
-    marginEnd: 40,
-    position: 'relative'
+    height: 120,
+  },
+  close:{
+    alignSelf: 'flex-end',
+    marginEnd: 50
   },
 });
 
