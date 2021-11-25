@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, Image, ActivityIndicator } from "react-native";
 import { Camera } from "expo-camera";
 import { storage } from "../firebase/config";
 
@@ -12,6 +12,7 @@ export default class MyCamera extends Component {
       permissions: false,
       photo: "",
       showCamera: true,
+      loaded: false,
     };
     this.camera;
   }
@@ -20,6 +21,7 @@ export default class MyCamera extends Component {
     Camera.requestCameraPermissionsAsync().then((response) => {
       this.setState({
         permissions: response.granted,
+        loaded: true,
       });
     });
   }
@@ -56,46 +58,52 @@ export default class MyCamera extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.viewCamera}>
-        {this.state.permissions ? (
-          this.state.showCamera ? (
-            <View style={styles.viewCamera}>
-              <Camera
-                style={styles.camera}
-                type={Camera.Constants.Type.back}
-                ref={(reference) => (this.camera = reference)}
-              />
-              <TouchableOpacity
-                style={styles.viewCamera}
-                onPress={() => this.takePhoto()}
-              >
-                <Text style={styles.shoot}>Say Whiskas!</Text>
-              </TouchableOpacity>
-            </View>
+    if (!loaded) {
+      return (
+      
+        <View style={styles.viewCamera}>
+          {this.state.permissions ? (
+            this.state.showCamera ? (
+              <View style={styles.viewCamera}>
+                <Camera
+                  style={styles.camera}
+                  type={Camera.Constants.Type.back}
+                  ref={(reference) => (this.camera = reference)}
+                />
+                <TouchableOpacity
+                  style={styles.viewCamera}
+                  onPress={() => this.takePhoto()}
+                >
+                  <Text style={styles.shoot}>Say Whiskas!</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <>
+                <Image style={styles.camera} source={{ uri: this.state.photo }} />
+                <TouchableOpacity
+                  style={styles.viewCamera}
+                  onPress={() => this.savePhoto()}
+                >
+                  <Text style={styles.accept}>Purr-fect!</Text>
+                </TouchableOpacity>
+  
+                <TouchableOpacity
+                  style={styles.viewCamera}
+                  onPress={() => this.newPhoto()}
+                >
+                  <Text style={styles.reject}>Not my profile</Text>
+                </TouchableOpacity>
+              </>
+            )
           ) : (
-            <>
-              <Image style={styles.camera} source={{ uri: this.state.photo }} />
-              <TouchableOpacity
-                style={styles.viewCamera}
-                onPress={() => this.savePhoto()}
-              >
-                <Text style={styles.accept}>Purr-fect!</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.viewCamera}
-                onPress={() => this.newPhoto()}
-              >
-                <Text style={styles.reject}>Not my profile</Text>
-              </TouchableOpacity>
-            </>
-          )
-        ) : (
-          <Text> Not allowed</Text>
-        )}
-      </View>
-    );
+            <Text> Not allowed</Text>
+          )}
+        </View>
+      );
+    } else {
+      return <ActivityIndicator color={"black"} size={"large"} />;
+    }
+    
   }
 }
 

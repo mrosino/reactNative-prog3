@@ -147,7 +147,6 @@ class Card extends Component {
             </Text>
           </TouchableOpacity>
         </View>
-        {/* {this.props.postData.data.comments.length} */}
 
         {this.state.showModal ? (
           

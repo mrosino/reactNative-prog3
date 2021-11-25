@@ -80,8 +80,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    
-    alignSelf: 'flex-start'
   },
   textButton:{
     textAlign: "center",

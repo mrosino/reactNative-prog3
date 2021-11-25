@@ -36,6 +36,7 @@ class Upload extends Component{
             image: this.state.url,
             likes:[],
             comments:[],
+            
         })
         .then(()=>{
             this.setState({
