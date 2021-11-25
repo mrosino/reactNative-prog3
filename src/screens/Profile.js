@@ -63,13 +63,12 @@ class Profile extends Component {
   }
   
   render() {
-    const { logout } = this.props;
     const { loading, name, email } = this.state; 
 
     if (!loading) {
       return (
         <View style={styles.container}>
-          <TouchableOpacity style={styles.close} onPress={logout}>
+          <TouchableOpacity style={styles.close} onPress={this.props.logout}>
             <Text style={styles.textButton}>Close claw</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Miau-Space </Text>
