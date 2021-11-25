@@ -29,8 +29,7 @@ class Login extends Component {
   render() {
     const { error } = this.props;
     const { email, password } = this.state;
-    const isButtonDisabled = !email || !password;
-
+    const isButtonDisabled = !email.trim() || !password.trim();
     return (
       <View style={styles.form}>
         <Text>Log into your catspace</Text>

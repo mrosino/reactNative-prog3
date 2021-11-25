@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View, StyleSheet, FlatList } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 
 import { auth, db } from "../firebase/config";
 import Card from "../components/Card";
@@ -23,26 +30,29 @@ class Profile extends Component {
 
   onPostDelete = (id) => {
     const { posts } = this.state;
-    this.setState({ posts: posts.filter(p => p.id !== id )})
-  }
+    this.setState({ posts: posts.filter((p) => p.id !== id) });
+  };
 
   fetchUserPosts = () => {
-    db.collection("Posts").where("owner", "==", auth.currentUser.email).orderBy("createdAt", "desc").limit(10)
+    db.collection("Posts")
+      .where("owner", "==", auth.currentUser.email)
+      .orderBy("createdAt", "desc")
+      .limit(10)
       .onSnapshot((docs) => {
-          const posts = [];
-          docs.forEach((doc) => {
-            posts.push({
-              id: doc.id,
-              data: doc.data(),
-            });
+        const posts = [];
+        docs.forEach((doc) => {
+          posts.push({
+            id: doc.id,
+            data: doc.data(),
           });
-          this.setState({ posts });
+        });
+        this.setState({ posts });
       });
-      this.setState({ loading: false });
-  }
+    this.setState({ loading: false });
+  };
 
   renderPosts = () => {
-    const { posts } = this.state; 
+    const { posts } = this.state;
 
     if (!posts.length) {
       return <Text style={styles.no}> Still no PawMarks</Text>;
@@ -55,15 +65,17 @@ class Profile extends Component {
           <FlatList
             data={posts}
             keyExtractor={(card) => card.id}
-            renderItem={({ item }) => <Card postData={item} onPostDelete={this.onPostDelete} />}
+            renderItem={({ item }) => (
+              <Card postData={item} onPostDelete={this.onPostDelete} />
+            )}
           />
         </View>
       </>
-    )   
-  }
-  
+    );
+  };
+
   render() {
-    const { loading, name, email } = this.state; 
+    const { loading, name, email } = this.state;
 
     if (!loading) {
       return (
@@ -75,7 +87,9 @@ class Profile extends Component {
           <View style={styles.information}>
             <Text style={styles.info}>{`Cat-name: ${name}`}</Text>
             <Text style={styles.info}>{`Cat-mail: ${email}`}</Text>
-            <Text style={styles.info}>{`Last log: ${auth.currentUser.metadata.lastSignInTime}`}</Text>
+            <Text
+              style={styles.info}
+            >{`Last log: ${auth.currentUser.metadata.lastSignInTime}`}</Text>
             {this.renderPosts()}
           </View>
         </View>
@@ -111,32 +125,32 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingVertical: 20,
     marginHorizontal: "15%",
-    borderColor: 'black',
+    borderColor: "black",
     borderRadius: 4,
-    borderWidth: 2,  
-    alignSelf: 'center',
-    padding: 3, 
+    borderWidth: 2,
+    alignSelf: "center",
+    padding: 3,
     color: "#BC6760",
-    fontWeight:'bold',
-    flex: 1
+    fontWeight: "bold",
+    flex: 1,
   },
   info: {
-    backgroundColor: "#F2E3E4",   
-    paddingLeft: 8, 
+    backgroundColor: "#F2E3E4",
+    paddingLeft: 8,
     color: "black",
-    fontWeight:'bold',
-    textAlign: 'stretch'
+    fontWeight: "bold",
+    textAlign: "stretch",
   },
-  close:{
-    alignSelf: 'flex-end',
-    marginEnd: 50
+  close: {
+    alignSelf: "flex-end",
+    marginEnd: 50,
   },
-  no:{
+  no: {
     color: "#AD4E5C",
     padding: 25,
     fontSize: 32,
-    fontWeight:'bolder',
-    alignSelf: 'center',
+    fontWeight: "bolder",
+    alignSelf: "center",
   },
 });
 export default Profile;
