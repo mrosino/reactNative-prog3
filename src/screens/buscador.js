@@ -5,7 +5,7 @@ import { db } from '../firebase/config';
 import Card from '../components/Card'
 
 class Buscador extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             loading: false,
@@ -24,7 +24,7 @@ class Buscador extends Component {
             const posts = [];
             docs.forEach(doc => {
                 posts.push({
-                    id:doc.id,
+                    id: doc.id,
                     data: doc.data()
                 })
             })
@@ -43,7 +43,7 @@ class Buscador extends Component {
 
     renderContent = () => {
         const { loading, posts, search } = this.state;
-        
+
         if (!loading) {
             if (!posts.length && !!search) {
                 return <>{`No paws marked by "${search}"`}</>;
@@ -58,8 +58,7 @@ class Buscador extends Component {
                     <FlatList
                         data={posts}
                         keyExtractor={(card) => card.id.toString()}
-                        renderItem={({item}) => <Card postData={item} /> }                        
-                        renderItem={({item}) => <Card style={styles.post} postData={item} /> }
+                        renderItem={({ item }) => <Card style={styles.post} postData={item} />}
                     />
                 </View>
             );
@@ -68,8 +67,8 @@ class Buscador extends Component {
         return <ActivityIndicator color={"black"} size={"large"} />;
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.buscador}>
                 <TextInput
                     style={styles.text}
@@ -84,24 +83,24 @@ class Buscador extends Component {
 }
 
 const styles = StyleSheet.create({
-    text:{
-        width:"100%",
-        borderWidth:1,
+    text: {
+        width: "100%",
+        borderWidth: 1,
         borderRadius: 6,
-        marginVertical:10,
+        marginVertical: 10,
         textAlign: "center",
         backgroundColor: "white",
         paddingStart: 10,
         paddingEnd: 10,
     },
-    buscador:{
+    buscador: {
         borderWidth: 1,
         backgroundColor: "#D9ABAE",
         paddingVertical: 10,
         marginVertical: 50,
         flex: 1
     },
-    title: { 
+    title: {
         fontSize: 20,
         fontWeight: "bold",
         textAlign: "center",
@@ -109,3 +108,4 @@ const styles = StyleSheet.create({
 })
 
 export default Buscador;
+
